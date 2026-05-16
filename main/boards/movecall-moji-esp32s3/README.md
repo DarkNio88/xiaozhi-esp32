@@ -1,25 +1,24 @@
-# 编译配置命令
+# Comandi di configurazione e compilazione
 
-**配置编译目标为 ESP32S3：**
+**Imposta il target di compilazione su ESP32S3:**
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**打开 menuconfig：**
+**Apri `menuconfig`:**
 
 ```bash
 idf.py menuconfig
 ```
 
-**选择板子：**
+**Seleziona la scheda:**
 
 ```
-Xiaozhi Assistant -> Board Type -> Movecall Moji 小智AI衍生版
+Xiaozhi Assistant -> Board Type -> Movecall Moji (derivato da Xiaozhi AI)
 ```
 
-
-**编译：**
+**Compila:**
 
 ```bash
 idf.py build

@@ -1,39 +1,37 @@
 # jiuchuan-xiaozhi-sound
-九川科技小智AI音箱
+Altoparlante AI "Xiaozhi" di Jiuchuan Technology
 
-## 🛠️ 编译指南
-**开发环境**：ESP-IDF v5.4.1
+## 🛠️ Guida alla compilazione
+**Ambiente di sviluppo**: ESP-IDF v5.4.1
 
-### 编译步骤：
-> ⚠️ **提示**：若在编译过程中访问在线库失败，可以尝试切换加速器状态，或修改 [idf_component.yml] 文件，替换为国内镜像源。
+### Passi di compilazione:
+> ⚠️ **Suggerimento**: se durante la compilazione l'accesso ai repository online fallisce, prova a cambiare lo stato dell'acceleratore o modifica il file [idf_component.yml] per usare mirror nazionali.
 
-1. 使用 VSCode 打开项目文件夹；
-2. 清除工程（Clean Project）；
-3. 设置 ESP-IDF 版本为 `v5.4.1`；
-4. 点击 VSCode 右下角提示，生成 [compile_commands.json] 文件；
-5. 设置目标设备为 `[esp32s3] -> [JTAG]`；
-6. 打开 **SDK Configuration Editor**；
-7. 设置 **Board Type** 为 **九川科技**；
-8. 保存配置并开始编译。
+1. Apri la cartella del progetto con VSCode;
+2. Pulisci il progetto (Clean Project);
+3. Imposta la versione ESP‑IDF su `v5.4.1`;
+4. Clicca la notifica in basso a destra in VSCode per generare il file `compile_commands.json`;
+5. Imposta il dispositivo target su `[esp32s3] -> [JTAG]`;
+6. Apri **SDK Configuration Editor**;
+7. Imposta **Board Type** su **Jiuchuan Technology**;
+8. Salva la configurazione e avvia la compilazione.
 
-## 🔌 烧录步骤
-1. 使用数据线连接电脑与音箱；
-2. 关闭设备电源后，长按电源键不松手；
-3. 在烧录工具中选择对应的串口（COM Port）；
-4. 点击烧录按钮，选择 UART 模式；
-5. 烧录完成前请勿松开电源键。
+## 🔌 Procedure di flashing
+1. Collega l'altoparlante al PC con un cavo dati;
+2. Spegni il dispositivo e tieni premuto il tasto di accensione;
+3. Nel tool di flashing seleziona la porta seriale corretta (COM Port);
+4. Premi il pulsante di flashing e scegli la modalità UART;
+5. Non rilasciare il tasto di accensione finché il flashing non è completato.
 
+## Piedinatura
+- 1-9:
+  - 1. DAT2: NC
+  - 2. CD/DAT3: Chip Select, attivo basso. (sconosciuto)
+  - 3. CMD: IO48 (Command/Response Line), la scheda invia comandi e dati alla TF card attraverso questa linea
+  - 4. VDD: Alimentazione
+  - 5. CLX: IO47 (clock), generato dall'host per sincronizzare la comunicazione dati
+  - 6. VSS: GND
+  - 7. DAT0: IO21, SPI_MISO, la TF card restituisce risposte e dati sull'host tramite questa linea
+  - 8. DAT1: NC
 
-## 引脚
-- 1-9：
-  - 1. DAT2     ： NC
-  - 2. CD/DAT3  ： 片选，低电平有效。（未知）
-  - 3. CMD      ： IO48（Command/Response Line），主机通过此线向TF卡发送命令和数据
-  - 4. VDD      ： 供电
-  - 5. CLX      ： IO47（时钟），由主机产生，同步数据通信
-  - 6. VSS      ： GND
-  - 7. DAT0     ： IO21，SPI_MISO，TF卡通过此线向主机返回响应和数据
-  - 8. DAT1     ： NC
-
-
-  依次为从右向左为1-9
+Da destra a sinistra, numerati da 1 a 9.

@@ -13,7 +13,7 @@ Prodotti correlati:
 https://e.tb.cn/h.6Gl2LC7rsrswQZp?tk=qFuaV9hzh0k CZ356
 
 ```
-【Taobao】 「小智AI带摄像头支持识物双麦克风打断 ESP32S3N16R8开发板表情包」
+[Taobao] "Xiaozhi AI con fotocamera, supporto riconoscimento oggetti, doppio microfono con interruzione - scheda di sviluppo ESP32S3N16R8 (pacchetto emoticon)"
 https://e.tb.cn/h.hBc8Gcx9cUluJJO?tk=YW5C4LPixKg
 
 ```

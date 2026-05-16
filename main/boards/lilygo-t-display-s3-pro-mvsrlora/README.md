@@ -1,27 +1,26 @@
-# 编译配置命令
+# Comandi di configurazione e compilazione
 
-**配置编译目标为 ESP32S3：**
+**Imposta il target di compilazione su ESP32S3:**
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**打开 menuconfig：**
+**Apri `menuconfig`:**
 
 ```bash
 idf.py menuconfig
 ```
 
-**选择板子：**
+**Seleziona la scheda:**
 
 ```
 Xiaozhi Assistant -> Board Type -> LILYGO T-Display-S3-Pro-MVSRLora
-Or
+OR
 Xiaozhi Assistant -> Board Type -> LILYGO T-Display-S3-Pro-MVSRLora_NO_BATTERY
 ```
 
-
-**编译：**
+**Compila:**
 
 ```bash
 idf.py build

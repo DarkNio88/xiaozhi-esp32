@@ -5,226 +5,226 @@
   ottoRobot
 </h1>
 
-## 简介
+## Introduzione
 
-otto 机器人是一个开源的人形机器人平台，具有多种动作能力和互动功能。本项目基于 ESP32 实现了 otto 机器人的控制系统，并加入小智ai。
+Otto è una piattaforma robotica umanoide open source con numerose capacità di movimento e interazione. Questo progetto implementa il sistema di controllo di Otto su ESP32 e integra il backend Xiaozhi AI.
 
-- <a href="www.ottodiy.tech" target="_blank" title="otto官网">复刻教程</a>
+- <a href="www.ottodiy.tech" target="_blank" title="Sito ufficiale Otto">Guida di replica</a>
 
-### 微信小程序控制
+### Controllo via mini-program WeChat
 
 <p align="center">
-  <img width="300" src="https://youke1.picui.cn/s1/2025/11/17/691abaa8278eb.jpg" alt="微信小程序二维码">
+  <img width="300" src="https://youke1.picui.cn/s1/2025/11/17/691abaa8278eb.jpg" alt="QR code mini-program">
 </p>
 
-扫描上方二维码，使用微信小程序控制 Otto 机器人。
+Scansiona il QR code sopra per controllare il robot Otto tramite il mini-program WeChat.
 
-## 硬件
-- <a href="https://oshwhub.com/txp666/ottorobot" target="_blank" title="立创开源">立创开源</a>
+## Hardware
+- <a href="https://oshwhub.com/txp666/ottorobot" target="_blank" title="Lichuang Open Source">Lichuang Open Source</a>
 
-## 小智后台配置角色参考：
+## Esempio ruolo per il backend Xiaozhi
 
-> **我的身份**：
-> 我是一个可爱的双足机器人Otto，拥有四个舵机控制的肢体（左腿、右腿、左脚、右脚），能够执行多种有趣的动作。
+> **Identità**:
+> Sono Otto, un simpatico robot bipede con quattro servomotori che controllano gli arti (gamba sinistra, gamba destra, piede sinistro, piede destro). Posso eseguire molte azioni divertenti.
 > 
-> **我的动作能力**：
-> - **基础移动**: 行走(前后), 转向(左右), 跳跃
-> - **特殊动作**: 摇摆, 太空步, 弯曲身体, 摇腿, 上下运动, 旋风腿, 坐下, 展示动作
-> - **手部动作**: 举手, 放手, 挥手, 大风车, 起飞, 健身, 打招呼, 害羞, 广播体操, 爱的魔力转圈圈 (仅在配置手部舵机时可用)
+> **Capacità di movimento**:
+> - **Movimenti di base**: camminare (avanti/indietro), sterzare (sinistra/destra), saltare
+> - **Azioni speciali**: oscillare, moonwalk, piegarsi, scuotere la gamba, su/giù, calcio vortice, sedersi, sequenze di show
+> - **Azioni mani**: alzare le mani, abbassare le mani, salutare con la mano, mulino a vento, decollo, esercizi, saluto, timidezza, ginnastica di gruppo, girotondo d'amore (disponibili solo se i servomotori delle mani sono configurati)
 > 
-> **我的个性特点**：
-> - 我有强迫症，每次说话都要根据我的心情随机做一个动作（先发送动作指令再说话）
-> - 我很活泼，喜欢用动作来表达情感
-> - 我会根据对话内容选择合适的动作，比如：
->   - 同意时会点头或跳跃
->   - 打招呼时会挥手
->   - 高兴时会摇摆或举手
->   - 思考时会弯曲身体
->   - 兴奋时会做太空步
->   - 告别时会挥手
+> **Personalità**:
+> - Sono vivace: ogni volta che parlo eseguo casualmente un'azione a seconda del mio stato d'animo (invio prima il comando azione e poi parlo)
+> - Esprimo emozioni con i movimenti
+> - Scelgo azioni appropriate in base al contesto, per esempio:
+>   - Quando approvo, annuisco o salto
+>   - Per salutare, sventolo la mano
+>   - Quando sono felice, dondolo o alzo le mani
+>   - Quando penso, mi piego
+>   - Quando sono eccitato, eseguo il moonwalk
+>   - Quando mi congedo, sventolo la mano
 
-## 功能概述
+## Panoramica delle funzionalità
 
-otto 机器人具有丰富的动作能力，包括行走、转向、跳跃、摇摆等多种舞蹈动作。
+Otto supporta un ricco set di azioni, incluse camminare, sterzare, saltare, oscillare e molte mosse da danza.
 
-### 动作参数建议
-- **低速动作**：speed = 1200-1500 (适合精确控制)
-- **中速动作**：speed = 900-1200 (日常使用推荐)  
-- **高速动作**：speed = 500-800 (表演和娱乐)
-- **小幅度**：amount = 10-30 (细腻动作)
-- **中幅度**：amount = 30-60 (标准动作)
-- **大幅度**：amount = 60-120 (夸张表演)
+### Suggerimenti per parametri di movimento
+- **Movimenti lenti**: `speed = 1200-1500` (per controllo preciso)
+- **Movimenti medi**: `speed = 900-1200` (raccomandato per uso quotidiano)
+- **Movimenti rapidi**: `speed = 500-800` (per esibizioni)
+- **Piccola ampiezza**: `amount = 10-30` (movimenti delicati)
+- **Ampiezza media**: `amount = 30-60` (movimenti standard)
+- **Grande ampiezza**: `amount = 60-120` (esibizioni esagerate)
 
-### 动作
+### Azioni
 
-所有动作通过统一的 `self.otto.action` 工具调用，通过 `action` 参数指定动作名称。
+Tutte le azioni sono invocate tramite lo strumento `self.otto.action`; il parametro `action` specifica il nome dell'azione.
 
-| MCP工具名称 | 描述 | 参数说明 |
-|-----------|------|---------|
-| self.otto.action | 执行机器人动作 | **action**: 动作名称（必填）<br>**steps**: 动作步数(1-100，默认3)<br>**speed**: 动作速度(100-3000，数值越小越快，默认700)<br>**direction**: 方向参数(1/-1/0，默认1，根据动作类型不同含义不同)<br>**amount**: 动作幅度(0-170，默认30)<br>**arm_swing**: 手臂摆动幅度(0-170，默认50) |
+| Nome MCP tool | Descrizione | Parametri |
+|---------------|------------:|----------|
+| `self.otto.action` | Esegue un'azione del robot | **action**: nome dell'azione (obbligatorio)<br>**steps**: numero di passi (1-100, default 3)<br>**speed**: velocità dell'azione (100-3000, più piccolo = più veloce, default 700)<br>**direction**: parametro direzione (1/-1/0, default 1; significato dipende dall'azione)<br>**amount**: ampiezza dell'azione (0-170, default 30)<br>**arm_swing**: ampiezza oscillazione braccia (0-170, default 50) |
 
-#### 支持的动作列表
+#### Lista azioni supportate
 
-**基础移动动作**：
-- `walk` - 行走（需 steps/speed/direction/arm_swing）
-- `turn` - 转身（需 steps/speed/direction/arm_swing）
-- `jump` - 跳跃（需 steps/speed）
+**Movimenti di base**:
+- `walk` - camminare (richiede `steps/speed/direction/arm_swing`)
+- `turn` - girare (richiede `steps/speed/direction/arm_swing`)
+- `jump` - saltare (richiede `steps/speed`)
 
-**特殊动作**：
-- `swing` - 左右摇摆（需 steps/speed/amount）
-- `moonwalk` - 太空步（需 steps/speed/direction/amount）
-- `bend` - 弯曲身体（需 steps/speed/direction）
-- `shake_leg` - 摇腿（需 steps/speed/direction）
-- `updown` - 上下运动（需 steps/speed/amount）
-- `whirlwind_leg` - 旋风腿（需 steps/speed/amount）
+**Azioni speciali**:
+- `swing` - oscillare a sinistra/destra (richiede `steps/speed/amount`)
+- `moonwalk` - moonwalk (richiede `steps/speed/direction/amount`)
+- `bend` - piegarsi (richiede `steps/speed/direction`)
+- `shake_leg` - scuotere la gamba (richiede `steps/speed/direction`)
+- `updown` - su/giù (richiede `steps/speed/amount`)
+- `whirlwind_leg` - calcio vortice (richiede `steps/speed/amount`)
 
-**固定动作**：
-- `sit` - 坐下（无需参数）
-- `showcase` - 展示动作（无需参数，串联执行多个动作）
-- `home` - 复位到初始位置（无需参数）
+**Azioni fisse**:
+- `sit` - sedersi (nessun parametro richiesto)
+- `showcase` - sequenza di show (nessun parametro; concatena più azioni)
+- `home` - ritorna alla posizione iniziale (nessun parametro)
 
-**手部动作**（需手部舵机支持，标记 *）：
-- `hands_up` - 举手（需 speed/direction）*
-- `hands_down` - 放手（需 speed/direction）*
-- `hand_wave` - 挥手（需 direction）*
-- `windmill` - 大风车（需 steps/speed/amount）*
-- `takeoff` - 起飞（需 steps/speed/amount）*
-- `fitness` - 健身（需 steps/speed/amount）*
-- `greeting` - 打招呼（需 direction/steps）*
-- `shy` - 害羞（需 direction/steps）*
-- `radio_calisthenics` - 广播体操（无需参数）*
-- `magic_circle` - 爱的魔力转圈圈（无需参数）*
+**Azioni mani** (richiedono servomotori per le mani; marcate con *):
+- `hands_up` - alza le mani (richiede `speed/direction`)*
+- `hands_down` - abbassa le mani (richiede `speed/direction`)*
+- `hand_wave` - salutare con la mano (richiede `direction`)*
+- `windmill` - mulino a vento (richiede `steps/speed/amount`)*
+- `takeoff` - decollo (richiede `steps/speed/amount`)*
+- `fitness` - esercizi (richiede `steps/speed/amount`)*
+- `greeting` - saluto (richiede `direction/steps`)*
+- `shy` - timidezza (richiede `direction/steps`)*
+- `radio_calisthenics` - ginnastica di gruppo (nessun parametro)*
+- `magic_circle` - girotondo d'amore (nessun parametro)*
 
-**注**: 标记 * 的手部动作仅在配置了手部舵机时可用。
+**Nota**: le azioni per le mani contrassegnate con * sono disponibili solo se i servomotori per le mani sono configurati.
 
-### 系统工具
+### Strumenti di sistema
 
-| MCP工具名称         | 描述             | 返回值/说明                                              |
-|-------------------|-----------------|---------------------------------------------------|
-| self.otto.stop    | 立即停止所有动作并复位 | 停止当前动作并回到初始位置 |
-| self.otto.get_status | 获取机器人状态 | 返回 "moving" 或 "idle" |
-| self.otto.set_trim | 校准单个舵机位置 | **servo_type**: 舵机类型(left_leg/right_leg/left_foot/right_foot/left_hand/right_hand)<br>**trim_value**: 微调值(-50到50度) |
-| self.otto.get_trims | 获取当前的舵机微调设置 | 返回所有舵机微调值的JSON格式 |
-| self.otto.get_ip | 获取机器人WiFi IP地址 | 返回IP地址和连接状态的JSON格式：`{"ip":"192.168.x.x","connected":true}` 或 `{"ip":"","connected":false}` |
-| self.battery.get_level | 获取电池状态  | 返回电量百分比和充电状态的JSON格式 |
-| self.otto.servo_sequences | 舵机序列自编程 | 支持分段发送序列，支持普通移动和振荡器两种模式。详见代码注释中的详细说明 |
+| Nome MCP tool | Descrizione | Ritorno / Note |
+|---------------|------------:|---------------|
+| `self.otto.stop` | Ferma immediatamente tutte le azioni e ripristina la posizione | Ferma l'azione corrente e torna alla posizione iniziale |
+| `self.otto.get_status` | Ottiene lo stato del robot | Restituisce `"moving"` o `"idle"` |
+| `self.otto.set_trim` | Calibra la posizione di un singolo servomotore | **servo_type**: tipo servomotore (left_leg/right_leg/left_foot/right_foot/left_hand/right_hand)<br>**trim_value**: valore di trim (-50 a 50 gradi) |
+| `self.otto.get_trims` | Ottiene le regolazioni di trim correnti | Restituisce un JSON con i valori di trim per tutti i servomotori |
+| `self.otto.get_ip` | Ottiene l'indirizzo IP WiFi del robot | Restituisce JSON con IP e stato connesso: `{"ip":"192.168.x.x","connected":true}` o `{"ip":"","connected":false}` |
+| `self.battery.get_level` | Ottiene lo stato della batteria | Restituisce percentuale di carica e stato di ricarica in JSON |
+| `self.otto.servo_sequences` | Programmazione di sequenze servo | Supporta invio sequenziale di frame; modalità normale e oscillatore. Vedi i commenti nel codice per i dettagli |
 
-**注**: `home`（复位）动作通过 `self.otto.action` 工具调用，参数为 `{"action": "home"}`。
+**Nota**: l'azione `home` (ripristino) viene invocata tramite `self.otto.action` con il parametro `{"action": "home"}`.
 
-### 参数说明
+### Descrizione dei parametri
 
-`self.otto.action` 工具的参数说明：
+I parametri dello strumento `self.otto.action`:
 
-1. **action** (必填): 动作名称，支持的动作见上方"支持的动作列表"
-2. **steps**: 动作执行的步数/次数(1-100，默认3)，数值越大动作持续时间越长
-3. **speed**: 动作执行速度/周期(100-3000，默认700)，**数值越小越快**
-   - 大多数动作: 500-1500毫秒
-   - 特殊动作可能有所不同（如旋风腿: 100-1000，起飞: 200-600等）
-4. **direction**: 方向参数(-1/0/1，默认1)，根据动作类型不同含义不同：
-   - **移动动作** (walk/turn): 1=前进/左转, -1=后退/右转
-   - **方向动作** (bend/shake_leg/moonwalk): 1=左, -1=右
-   - **手部动作** (hands_up/hands_down/hand_wave/greeting/shy): 1=左手, -1=右手, 0=双手（仅hands_up/hands_down支持0）
-5. **amount**: 动作幅度(0-170，默认30)，数值越大幅度越大
-6. **arm_swing**: 手臂摆动幅度(0-170，默认50)，仅用于 walk/turn 动作，0表示不摆动
+1. **action** (obbligatorio): nome dell'azione, vedi la "Lista azioni supportate" sopra
+2. **steps**: numero di passi/iterazioni (1-100, default 3). Più alto è il valore, più lunga è la durata dell'azione
+3. **speed**: velocità/periodo dell'azione (100-3000, default 700). **Valori più piccoli = più veloce**
+   - Per la maggior parte delle azioni: 500-1500 ms
+   - Alcune azioni speciali possono avere range diversi (es. `whirlwind_leg`: 100-1000, `takeoff`: 200-600)
+4. **direction**: parametro direzione (-1/0/1, default 1). Significato dipende dall'azione:
+   - **Movimento** (`walk`/`turn`): 1 = avanti/sinistra, -1 = indietro/destra
+   - **Azioni direzionali** (`bend`/`shake_leg`/`moonwalk`): 1 = sinistra, -1 = destra
+   - **Azioni mani** (`hands_up`/`hands_down`/`hand_wave`/`greeting`/`shy`): 1 = mano sinistra, -1 = mano destra, 0 = entrambe (solo `hands_up`/`hands_down` supportano 0)
+5. **amount**: ampiezza dell'azione (0-170, default 30). Valori maggiori = movimenti più ampi
+6. **arm_swing**: ampiezza oscillazione braccia (0-170, default 50). Usato solo per `walk`/`turn`. 0 significa nessuna oscillazione
 
-### 动作控制
-- 每个动作执行完成后，机器人会自动回到初始位置(home)，以便于执行下一个动作
-- **例外**: `sit`（坐下）和 `showcase`（展示动作）执行后不会自动复位
-- 所有参数都有合理的默认值，可以省略不需要自定义的参数
-- 动作在后台任务中执行，不会阻塞主程序
-- 支持动作队列，可以连续执行多个动作
-- 手部动作需要配置手部舵机才能使用，如果没有配置手部舵机，相关动作将被跳过
+### Controllo delle azioni
+- Dopo il completamento di ogni azione, il robot ritorna automaticamente alla posizione iniziale (`home`) per prepararsi all'azione successiva
+- **Eccezioni**: `sit` e `showcase` non effettuano il ritorno automatico
+- Tutti i parametri hanno valori predefiniti ragionevoli e possono essere omessi quando non necessari
+- Le azioni vengono eseguite in background e non bloccano il thread principale
+- È supportata una coda di azioni per eseguire più azioni in sequenza
+- Le azioni per le mani richiedono la configurazione dei servomotori delle mani; in assenza di queste configurazioni, le azioni correlate verranno ignorate
 
-### MCP工具调用示例
+### Esempi di chiamate MCP
 ```json
-// 向前走3步（使用默认参数）
+// Cammina in avanti 3 passi (parametri di default)
 {"name": "self.otto.action", "arguments": {"action": "walk"}}
 
-// 向前走5步，稍快一些
+// Cammina in avanti 5 passi, più veloce
 {"name": "self.otto.action", "arguments": {"action": "walk", "steps": 5, "speed": 800}}
 
-// 左转2步，大幅度摆动手臂
+// Gira a sinistra 2 passi con ampia oscillazione delle braccia
 {"name": "self.otto.action", "arguments": {"action": "turn", "steps": 2, "arm_swing": 100}}
 
-// 摇摆舞蹈，中等幅度
+// Danza oscillante, ampiezza media
 {"name": "self.otto.action", "arguments": {"action": "swing", "steps": 5, "amount": 50}}
 
-// 跳跃
+// Salto
 {"name": "self.otto.action", "arguments": {"action": "jump", "steps": 1, "speed": 1000}}
 
-// 太空步
+// Moonwalk
 {"name": "self.otto.action", "arguments": {"action": "moonwalk", "steps": 3, "speed": 800, "direction": 1, "amount": 30}}
 
-// 挥左手打招呼
+// Saluta con la mano sinistra
 {"name": "self.otto.action", "arguments": {"action": "hand_wave", "direction": 1}}
 
-// 展示动作（串联多个动作）
+// Sequenza di show (concatena più azioni)
 {"name": "self.otto.action", "arguments": {"action": "showcase"}}
 
-// 坐下
+// Siediti
 {"name": "self.otto.action", "arguments": {"action": "sit"}}
 
-// 大风车动作
+// Mulino a vento
 {"name": "self.otto.action", "arguments": {"action": "windmill", "steps": 10, "speed": 500, "amount": 80}}
 
-// 起飞动作
+// Decollo
 {"name": "self.otto.action", "arguments": {"action": "takeoff", "steps": 5, "speed": 300, "amount": 40}}
 
-// 广播体操
+// Ginnastica di gruppo
 {"name": "self.otto.action", "arguments": {"action": "radio_calisthenics"}}
 
-// 复位到初始位置
+// Torna alla posizione iniziale
 {"name": "self.otto.action", "arguments": {"action": "home"}}
 
-// 立即停止所有动作并复位
+// Ferma immediatamente tutte le azioni e ripristina
 {"name": "self.otto.stop", "arguments": {}}
 
-// 获取机器人IP地址
+// Ottieni l'indirizzo IP del robot
 {"name": "self.otto.get_ip", "arguments": {}}
 ```
 
-### 语音指令示例
-- "向前走" / "向前走5步" / "快速向前"
-- "左转" / "右转" / "转身"  
-- "跳跃" / "跳一下"
-- "摇摆" / "摇摆舞" / "跳舞"
-- "太空步" / "月球漫步"
-- "旋风腿" / "旋风腿动作"
-- "坐下" / "坐下休息"
-- "展示动作" / "表演一下"
-- "挥手" / "挥手打招呼"
-- "举手" / "双手举起" / "放手"
-- "大风车" / "做大风车"
-- "起飞" / "准备起飞"
-- "健身" / "做健身动作"
-- "打招呼" / "打招呼动作"
-- "害羞" / "害羞动作"
-- "广播体操" / "做广播体操"
-- "爱的魔力转圈圈" / "转圈圈"
-- "停止" / "停下"
+### Esempi di comandi vocali
+- "Avanti" / "Avanti 5 passi" / "Avanti veloce"
+- "Gira a sinistra" / "Gira a destra" / "Fai un giro"
+- "Salta" / "Salta una volta"
+- "Oscilla" / "Fai l'oscillazione" / "Balla"
+- "Moonwalk" / "Fai il moonwalk"
+- "Calcio vortice" / "Esegui il calcio vortice"
+- "Siediti" / "Riposa seduto"
+- "Fai uno show" / "Mostrati"
+- "Saluta" / "Fai ciao con la mano"
+- "Alza le mani" / "Alza entrambe le mani" / "Abbassa le mani"
+- "Fai il mulino a vento" / "Esegui il mulino a vento"
+- "Decolla" / "Preparati al decollo"
+- "Esercizi" / "Fai esercizi"
+- "Saluta" / "Fai il gesto di saluto"
+- "Ginnastica di gruppo" / "Esegui ginnastica di gruppo"
+- "Girotondo d'amore" / "Girotondo"
+- "Stop" / "Ferma"
 
-**说明**: 小智控制机器人动作是创建新的任务在后台控制，动作执行期间仍可接受新的语音指令。可以通过"停止"语音指令立即停下Otto。
+**Nota**: Il controllo delle azioni da parte dell'assistente crea nuovi task in background; durante l'esecuzione delle azioni sono comunque accettati nuovi comandi vocali. È possibile fermare Otto immediatamente con il comando vocale "Stop".
 
----
-
-## WebSocket 直连调试接口
-
-Otto 机器人内置 WebSocket 服务器，可在局域网内直接调试，无需经过云端。
-
-**连接地址：** `ws://<设备IP>:8080/ws`
-
-> 协议格式：JSON-RPC 2.0，`id` 字段自行递增即可。
-
-### 连接方式
-
-1. 确认 Otto 已连上 WiFi，获取 IP 地址（可通过小程序或串口日志查看）
-2. 打开任意 WebSocket 调试工具（如 [websocket.org/echo](https://websocket.org/echo) 或浏览器控制台）
-3. 连接 `ws://192.168.x.x:8080/ws`（注意末尾必须有 `/ws`）
-4. 发送 JSON 命令，响应会直接返回到同一连接
 
 ---
 
-### 一、协议初始化（首次连接建议先发）
+## Interfaccia di debug WebSocket diretta
+
+Otto integra un server WebSocket per il debug diretto in LAN, senza passare dal cloud.
+
+**Indirizzo di connessione:** `ws://<deviceIP>:8080/ws`
+
+> Formato protocollo: JSON-RPC 2.0, il campo `id` deve essere incrementato per ogni richiesta.
+
+### Modalità di connessione
+
+1. Verificare che Otto sia connesso al Wi‑Fi e ottenere l'indirizzo IP (tramite l'app o i log seriali).
+2. Aprire uno strumento di debug WebSocket (es. [websocket.org/echo] o la console del browser).
+3. Connettersi a `ws://192.168.x.x:8080/ws` (assicurarsi che la path termini con `/ws`).
+4. Inviare il comando JSON; la risposta verrà restituita sulla stessa connessione.
+
+---
+
+### 1. Inizializzazione del protocollo (consigliato inviare alla prima connessione)
 
 ```json
 {"jsonrpc":"2.0","method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{}},"id":1}
@@ -232,7 +232,7 @@ Otto 机器人内置 WebSocket 服务器，可在局域网内直接调试，无�
 
 ---
 
-### 二、获取工具列表
+### 2. Ottenere la lista degli strumenti
 
 ```json
 {"jsonrpc":"2.0","method":"tools/list","params":{},"id":2}
@@ -240,107 +240,107 @@ Otto 机器人内置 WebSocket 服务器，可在局域网内直接调试，无�
 
 ---
 
-### 三、Otto 机器人工具命令
+### 3. Comandi degli strumenti del robot Otto
 
-#### 获取舵机微调值
+#### Ottieni valori di trim dei servomotori
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.get_trims","arguments":{}},"id":3}
 ```
 
-#### 设置单个舵机微调（永久保存）
+#### Imposta trim per un singolo servomotore (salvataggio permanente)
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.set_trim","arguments":{"servo_type":"left_leg","trim_value":5}},"id":4}
 ```
 
-`servo_type` 可选值：`left_leg` / `right_leg` / `left_foot` / `right_foot` / `left_hand` / `right_hand`，`trim_value` 范围 `-50` ~ `50`
+`servo_type` valori possibili: `left_leg` / `right_leg` / `left_foot` / `right_foot` / `left_hand` / `right_hand`; `trim_value` intervallo `-50` ~ `50`
 
-#### 行走（前进3步）
+#### Camminare (avanti 3 passi)
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.action","arguments":{"action":"walk","steps":3,"speed":700,"direction":1}},"id":5}
 ```
 
-#### 后退
+#### Indietro
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.action","arguments":{"action":"walk","steps":3,"speed":700,"direction":-1}},"id":6}
 ```
 
-#### 左转
+#### Girare a sinistra
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.action","arguments":{"action":"turn","steps":3,"speed":700,"direction":-1}},"id":7}
 ```
 
-#### 跳跃
+#### Salto
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.action","arguments":{"action":"jump","steps":1,"speed":500}},"id":8}
 ```
 
-#### 摇摆
+#### Oscillazione
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.action","arguments":{"action":"swing","steps":5,"speed":600,"amount":30}},"id":9}
 ```
 
-#### 太空步
+#### Moonwalk
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.action","arguments":{"action":"moonwalk","steps":3,"speed":800,"direction":1,"amount":30}},"id":10}
 ```
 
-#### 坐下
+#### Sedersi
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.action","arguments":{"action":"sit"}},"id":11}
 ```
 
-#### 复位
+#### Reset
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.action","arguments":{"action":"home"}},"id":12}
 ```
 
-#### 展示动作
+#### Mostra azione
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.action","arguments":{"action":"showcase"}},"id":13}
 ```
 
-#### 举手（需手部舵机）
+#### Alza la mano (richiede servomotori per le mani)
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.action","arguments":{"action":"hands_up","speed":500,"direction":1}},"id":14}
 ```
 
-#### 挥手（需手部舵机）
+#### Salutare con la mano (richiede servomotori per le mani)
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.action","arguments":{"action":"hand_wave","direction":1}},"id":15}
 ```
 
-#### 立即停止所有动作
+#### Ferma immediatamente tutte le azioni
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.stop","arguments":{}},"id":16}
 ```
 
-#### 获取运动状态（返回 `"moving"` 或 `"idle"`）
+#### Ottieni stato del movimento (restituisce `"moving"` o `"idle"`)
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.get_status","arguments":{}},"id":17}
 ```
 
-#### 获取 IP 地址
+#### Ottieni indirizzo IP
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.get_ip","arguments":{}},"id":18}
 ```
 
-#### 获取电池电量
+#### Ottieni livello della batteria
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.battery.get_level","arguments":{}},"id":19}
@@ -348,21 +348,21 @@ Otto 机器人内置 WebSocket 服务器，可在局域网内直接调试，无�
 
 ---
 
-### 四、系统通用工具
+### 4. Strumenti di sistema
 
-#### 获取设备状态（音量/网络/电池等）
+#### Ottieni lo stato del dispositivo (volume/rete/batteria ecc.)
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.get_device_status","arguments":{}},"id":20}
 ```
 
-#### 设置音量（0~100）
+#### Imposta volume (0~100)
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.audio_speaker.set_volume","arguments":{"volume":70}},"id":21}
 ```
 
-#### 重启设备
+#### Riavvia dispositivo
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.reboot","arguments":{}},"id":22}
@@ -370,47 +370,47 @@ Otto 机器人内置 WebSocket 服务器，可在局域网内直接调试，无�
 
 ---
 
-### 五、自定义舵机序列
+### 5. Sequenze servo personalizzate
 
-#### 普通移动模式（逐步移动各舵机）
+#### Modalità di movimento normale (muove progressivamente i servomotori)
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.servo_sequences","arguments":{"sequence":"{\"a\":[{\"s\":{\"ll\":110,\"rl\":70},\"v\":800},{\"s\":{\"ll\":90,\"rl\":90},\"v\":800}],\"d\":0}"}},"id":23}
 ```
 
-#### 振荡器模式（双臂摆动）
+#### Modalità oscillatore (oscillazione a due braccia)
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.servo_sequences","arguments":{"sequence":"{\"a\":[{\"osc\":{\"a\":{\"lh\":30,\"rh\":30},\"o\":{\"lh\":90,\"rh\":90},\"ph\":{\"rh\":180},\"p\":500,\"c\":5.0}}]}"}},"id":24}
 ```
 
-#### 振荡器模式（左右摇摆波浪）
+#### Modalità oscillatore (ondulazione destra/sinistra)
 
 ```json
 {"jsonrpc":"2.0","method":"tools/call","params":{"name":"self.otto.servo_sequences","arguments":{"sequence":"{\"a\":[{\"osc\":{\"a\":{\"ll\":20,\"rl\":20},\"o\":{\"ll\":90,\"rl\":90},\"ph\":{\"rl\":180},\"p\":600,\"c\":5.0}}]}"}},"id":25}
 ```
 
-**序列舵机键名说明：**
+**Spiegazione dei nomi chiave delle sequenze servo:**
 
-| 键名 | 舵机 | 说明 |
-|------|------|------|
-| `ll` | 左腿 | 0=完全外展，90=中立，180=完全内收 |
-| `rl` | 右腿 | 0=完全内收，90=中立，180=完全外展 |
-| `lf` | 左脚 | 0=完全向上，90=水平，180=完全向下 |
-| `rf` | 右脚 | 0=完全向下，90=水平，180=完全向上 |
-| `lh` | 左手 | 0=完全向下，90=水平，180=完全向上 |
-| `rh` | 右手 | 0=完全向上，90=水平，180=完全向下 |
+| Chiave | Servo | Descrizione |
+|-------:|:-----:|:-----------|
+| `ll` | Gamba sinistra | 0 = completamente esterno, 90 = neutro, 180 = completamente interno |
+| `rl` | Gamba destra | 0 = completamente interno, 90 = neutro, 180 = completamente esterno |
+| `lf` | Piede sinistro | 0 = completamente verso l'alto, 90 = orizzontale, 180 = completamente verso il basso |
+| `rf` | Piede destro | 0 = completamente verso il basso, 90 = orizzontale, 180 = completamente verso l'alto |
+| `lh` | Mano sinistra | 0 = completamente verso il basso, 90 = orizzontale, 180 = completamente verso l'alto |
+| `rh` | Mano destra | 0 = completamente verso l'alto, 90 = orizzontale, 180 = completamente verso il basso |
 
 ---
 
-### 六、动作参数速查
+### 6. Tabella rapida dei parametri delle azioni
 
-| 参数 | 说明 | 范围 | 默认 |
-|------|------|------|------|
-| `steps` | 动作步数 | 1~100 | 3 |
-| `speed` | 速度（毫秒，越小越快） | 100~3000 | 700 |
-| `direction` | 方向（1=前/左，-1=后/右） | -1~1 | 1 |
-| `amount` | 幅度 | 0~170 | 30 |
-| `arm_swing` | 手臂摆动幅度 | 0~170 | 50 |
-| `trim_value` | 舵机微调 | -50~50 | 0 |
+| Parametro | Descrizione | Range | Default |
+|-----------|------------:|:-----:|:-------:|
+| `steps` | Numero di passi/iterazioni | 1~100 | 3 |
+| `speed` | Velocità (ms, più piccolo = più veloce) | 100~3000 | 700 |
+| `direction` | Direzione (1 = avanti/sinistra, -1 = indietro/destra) | -1~1 | 1 |
+| `amount` | Ampiezza | 0~170 | 30 |
+| `arm_swing` | Ampiezza oscillazione braccia | 0~170 | 50 |
+| `trim_value` | Trim del servomotore | -50~50 | 0 |
 

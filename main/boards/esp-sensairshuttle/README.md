@@ -7,7 +7,7 @@
         <b> Documentazione scheda di sviluppo </b>
     </a>
     |
-    <a href="#传感器--shuttleboard-子板支持">
+    <a href="#sensori--supporto-shuttleboard">
         <b> Documentazione sensori & <i>ShuttleBoard</i> </b>
     </a>
 </div>

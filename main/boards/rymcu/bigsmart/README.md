@@ -1,30 +1,30 @@
 # RYMCU BigSmart
 
-该目录为 `RYMCU BigSmart` 开发板适配，并按以下硬件资源完成映射：
+Questa cartella contiene l'adattamento per la scheda di sviluppo `RYMCU BigSmart`, mappata sulle seguenti risorse hardware:
 
-- 主控：ESP32-S3-WROOM-1-N16R8
-- 显示：ST7789（320x240，SPI）
-- 触摸：GT911（I2C）
-- 音频：ES8311 + ES7210（I2S + I2C）
-- IO扩展：PCA9557（I2C 地址 `0x19`）
-- 摄像头：GC0308（DVP）
+- MCU: ESP32-S3-WROOM-1-N16R8
+- Display: ST7789 (320x240, SPI)
+- Touch: GT911 (I2C)
+- Audio: ES8311 + ES7210 (I2S + I2C)
+- Estensione IO: PCA9557 (indirizzo I2C `0x19`)
+- Fotocamera: GC0308 (DVP)
 
-参考硬件文档：
+Documentazione hardware di riferimento:
 
 - https://github.com/rymcu/BigSmart-Open/blob/main/docs/rymcu-bigsmart-hardware.md
 
-## 编译
+## Compilazione
 
 ```bash
 idf.py set-target esp32s3
 idf.py menuconfig
 ```
 
-在菜单中选择：
+Nel menu selezionare:
 
 `Xiaozhi Assistant -> Board Type -> RYMCU BigSmart`
 
-然后执行：
+Quindi eseguire:
 
 ```bash
 idf.py build

@@ -1,30 +1,33 @@
-【产品简介】
-】支持触摸
-】支持充电
-】独特外形设计
-产品链接1：https://spotpear.cn/shop/ESP32-S3-N16R8-AI-DeepSeek-XiaoZhi-XiaGe-Qwen-DouBao-1.28-inch-LCD.html
-产品链接2：https://spotpear.cn/shop/ESP32-S3-N16R8-AI-DeepSeek-XiaoZhi-XiaGe-Qwen-DouBao-1.28-inch-Round-LCD-BOX-TouchScreen.html
-# 编译配置命令
+【Descrizione del prodotto】
 
-**配置编译目标为 ESP32S3：**
+- Supporta touch
+- Supporta ricarica
+- Design esteriore unico
+
+Link prodotto 1: https://spotpear.cn/shop/ESP32-S3-N16R8-AI-DeepSeek-XiaoZhi-XiaGe-Qwen-DouBao-1.28-inch-LCD.html
+Link prodotto 2: https://spotpear.cn/shop/ESP32-S3-N16R8-AI-DeepSeek-XiaoZhi-XiaGe-Qwen-DouBao-1.28-inch-Round-LCD-BOX-TouchScreen.html
+
+# Comandi di compilazione e configurazione
+
+**Imposta il target di compilazione su ESP32S3:**
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**打开 menuconfig：**
+**Apri menuconfig:**
 
 ```bash
 idf.py menuconfig
 ```
 
-**选择板子：**
+**Seleziona la scheda:**
 
 ```
 Xiaozhi Assistant -> Board Type -> Spotpear ESP32-S3-1.28-BOX
 ```
 
-**编译：**
+**Compila:**
 
 ```bash
 idf.py build

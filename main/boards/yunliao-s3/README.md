@@ -11,7 +11,7 @@ Il codice della versione ufficiale è mantenuto nel progetto principale Xiaozhi 
 ### Operazioni con i pulsanti
 
 - **Accensione**: dallo stato spento, tenere premuto il pulsante per 1 secondo e poi rilasciare per accendere.
-- **Spegnimento**: da acceso, tenere premuto il pulsante per 1 secondo; la barra del titolo mostrerà "请稍候" e dopo 2 secondi il dispositivo si spegnerà automaticamente.
+- **Spegnimento**: da acceso, tenere premuto il pulsante per 1 secondo; la barra del titolo mostrerà "Per favore attendere" e dopo 2 secondi il dispositivo si spegnerà automaticamente.
 - **Sveglia/Interruzione**: in una normale conversazione, premere una volta il pulsante.
 - **Commutazione 4G/Wi‑Fi**: durante l'avvio o nella schermata di configurazione della rete, fare doppio clic sul pulsante entro 1 secondo (richiede modulo 4G installato).
 - **Cambia modalità di interruzione vocale (AEC)**: dopo l'avvio, quando è in stato inattivo, fare doppio clic sul pulsante entro 1 secondo per scorrere le modalità di interruzione vocale.
@@ -82,7 +82,7 @@ idf.py menuconfig
 **Seleziona la scheda**
 
 ```bash
-Xiaozhi Assistant -> Board Type -> seleziona `小智云聊-S3` -> abilita `Enable Device-Side AEC`
+Xiaozhi Assistant -> Board Type -> seleziona `Xiaozhi Cloud Chat S3` -> abilita `Enable Device-Side AEC`
 ```
 
 **Compilazione**

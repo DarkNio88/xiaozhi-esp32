@@ -1,46 +1,46 @@
-# 产品链接
+# Link prodotto
 
-[微雪电子 ESP32-S3-Touch-AMOLED-1.32](https://www.waveshare.net/shop/ESP32-S3-Touch-AMOLED-1.32.htm)
+[Waveshare ESP32-S3-Touch-AMOLED-1.32](https://www.waveshare.net/shop/ESP32-S3-Touch-AMOLED-1.32.htm)
 
-# 编译配置命令
+# Comandi di configurazione e compilazione
 
-**克隆工程**
+**Clona il repository**
 
 ```bash
 git clone https://github.com/78/xiaozhi-esp32.git
 ```
 
-**进入工程**
+**Entra nella cartella del progetto**
 
 ```bash
 cd xiaozhi-esp32
 ```
 
-**配置编译目标为 ESP32S3**
+**Imposta il target di compilazione su ESP32S3**
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**打开 menuconfig**
+**Apri menuconfig**
 
 ```bash
 idf.py menuconfig
 ```
 
-**选择板子**
+**Seleziona la scheda**
 
 ```bash
 Xiaozhi Assistant -> Board Type -> Waveshare ESP32-S3-Touch-AMOLED-1.32
 ```
 
-**编译**
+**Compilazione**
 
-```ba
+```bash
 idf.py build
 ```
 
-**下载并打开串口终端**
+**Scarica e apri il monitor seriale**
 
 ```bash
 idf.py build flash monitor

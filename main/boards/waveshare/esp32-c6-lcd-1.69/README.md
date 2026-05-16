@@ -1,56 +1,57 @@
-# 产品链接
+# Link prodotto
 
-[微雪电子 ESP32-C6-Touch-LCD-1.69](https://www.waveshare.net/shop/ESP32-C6-Touch-LCD-1.69.htm)
-[微雪电子 ESP32-C6-LCD-1.69](https://www.waveshare.net/shop/ESP32-C6-LCD-1.69.htm)
+[Waveshare ESP32-C6-Touch-LCD-1.69](https://www.waveshare.net/shop/ESP32-C6-Touch-LCD-1.69.htm)
+[Waveshare ESP32-C6-LCD-1.69](https://www.waveshare.net/shop/ESP32-C6-LCD-1.69.htm)
 
-# 编译配置命令
+# Comandi di compilazione e configurazione
 
-**克隆工程**
+**Clona il repository**
 
 ```bash
 git clone https://github.com/78/xiaozhi-esp32.git
 ```
 
-**进入工程**
+**Entra nella cartella del progetto**
 
 ```bash
 cd xiaozhi-esp32
 ```
 
-**配置编译目标为 ESP32C6**
+**Imposta il target di compilazione su ESP32C6**
 
 ```bash
 idf.py set-target esp32c6
 ```
 
-**打开 menuconfig**
+**Apri `menuconfig`**
 
 ```bash
 idf.py menuconfig
 ```
 
-**选择板子**
+**Seleziona la scheda**
 
-```bash
+```text
 Xiaozhi Assistant -> Board Type -> Waveshare ESP32-C6-LCD-1.69
 ```
 
-**编译**
+**Compila**
 
-```ba
+```bash
 idf.py build
 ```
 
-**下载并打开串口终端**
+**Scarica e apri il monitor seriale**
 
 ```bash
 idf.py build flash monitor
 ```
-# 按键操作
-## BOOT 按键
-**未连接服务器前单击: 进入配网模式**
-**连接服务器后单击: 唤醒、打断**
 
-## PWR 按键
-**双击：息屏、亮屏**
-**长按：开关机**
+## Operazioni sui tasti
+### Tasto BOOT
+**Se premuto prima di essere connessi al server:** entra in modalità di configurazione rete (provisioning)
+**Se premuto quando connessi al server:** risveglio / interruzione
+
+### Tasto PWR
+**Doppio click:** spegne/riaccende lo schermo
+**Premuto a lungo:** accensione/spegnimento del dispositivo

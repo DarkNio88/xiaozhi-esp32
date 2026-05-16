@@ -9,10 +9,10 @@
 
   electronBot è un piccolo robot da scrivania open-source creato da Zhihui; il design si ispira a EVE di WALL-E. Il robot supporta comunicazione USB e visualizzazione su schermo, ha 6 gradi di libertà (roll/pitch delle mani, collo e tronco) e utilizza servomotori speciali modificati che supportano il feedback dell'angolo delle giunzioni.
 
-  - <a href="www.electronBot.tech" target="_blank" title="electronBot官网">Sito ufficiale electronBot</a>
+  - <a href="www.electronBot.tech" target="_blank" title="Sito ufficiale electronBot">Sito ufficiale electronBot</a>
 
   ## Hardware
-  - <a href="https://oshwhub.com/txp666/electronbot-ai" target="_blank" title="立创开源">Piattaforma open-source</a>
+  - <a href="https://oshwhub.com/txp666/electronbot-ai" target="_blank" title="Piattaforma open-source">Piattaforma open-source</a>
 
   #### Esempi di comandi AI
   - **Movimenti delle mani**:

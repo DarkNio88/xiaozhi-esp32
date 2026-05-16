@@ -1,11 +1,11 @@
-## EDA-Super-Bear 机器熊
+## EDA-Super-Bear (orso robot)
 
-### 项目文档
-- [EDA-Super-Bear 项目文档](https://wiki.lceda.cn/zh-hans/course-projects/smart-internet/eda-superbear/eda-superbear-introduce.html)
+### Documentazione del progetto
+- [Documentazione EDA-Super-Bear](https://wiki.lceda.cn/zh-hans/course-projects/smart-internet/eda-superbear/eda-superbear-introduce.html)
 
-### 编译配置
-Flash大小按ESP32S3模组大小调整  
-例如模组Flash容量为8MB时：
+### Configurazione di compilazione
+Adatta la dimensione del Flash in base al modulo ESP32S3 utilizzato.  
+Esempio: se il modulo dispone di 8MB di Flash:
 
 ```
 Partition Table  --->

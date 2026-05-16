@@ -1,60 +1,60 @@
-# 无名科技星智 1.54 METAL (wifi)
+# Wuming Technology Xingzhi 1.54 METAL (Wi‑Fi)
 
-## 简介
-无名科技星智 1.54 METAL (wifi) 是星智 1.54 开模版的升级款，配备 1.54 寸 LCD 屏幕与 CST816 触摸芯片。它用触摸交互替代物理按键，并将外壳升级为铝合金材质，同步优化了交互体验与产品质感、手感。
+## Introduzione
+Wuming Technology Xingzhi 1.54 METAL (Wi‑Fi) è una versione aggiornata del modello Xingzhi 1.54, dotata di un display LCD da 1.54" e del chip touch CST816. Utilizza l'interazione touch al posto dei tasti fisici e ha una scocca in lega di alluminio, migliorando l'esperienza d'uso e la qualità percepita.
 
->### 按键操作
->- **开机**: 关机状态，长按电源键3秒后自动开机（旧版硬件长按电源键1s后自动开机）
->- **关机**: 开机状态，长按电源键5秒后自动关机（旧版硬件插入usb时不会自动关机）   
->- **唤醒/打断**: 正常通话环境下，单击中间触摸按键
->- **重新配网**: 开机后，1秒钟内单击中间触摸按键，会自动重启并进入配网界面
->- **增加音量**: 开机状态下，单击右侧触摸按键，音量增加。长按右侧触摸按键2s，音量递增。
->- **减小音量**: 开机状态下，单击左侧触摸按键，音量减小。长按左侧触摸按键2s，音量递减。
+### Operazioni sui tasti
+- **Accensione**: a dispositivo spento, tenere premuto il tasto di accensione per 3s per avviare (nelle versioni precedenti premere 1s).
+- **Spegnimento**: a dispositivo acceso, tenere premuto il tasto di accensione per 5s per spegnere (nelle versioni precedenti, l'inserimento USB non spegne automaticamente).
+- **Risveglio/Interruzione**: durante una conversazione, toccare il pulsante centrale.
+- **Ripristino rete**: dopo l'accensione, toccare il pulsante centrale entro 1s per riavviare ed entrare nella configurazione della rete.
+- **Aumenta volume**: a dispositivo acceso, toccare il pulsante destro per aumentare il volume; tenendo premuto per 2s aumenta continuamente.
+- **Diminuisci volume**: a dispositivo acceso, toccare il pulsante sinistro per diminuire il volume; tenendo premuto per 2s diminuisce continuamente.
 
->### 休眠操作
->- **浅睡眠**: 开机后，维持待命状态60s后，进入浅睡眠（屏幕亮度调整到1%）
->- **深睡眠**: 开机后，维持待命状态300s后，进入深睡眠（自动关机）
->- **唤醒**: 浅睡眠状态下，单击中间触摸按键，唤醒设备（屏幕亮度回调）
+### Sospensione
+- **Sospensione leggera**: dopo 60s di inattività entra in sospensione leggera (luminosità schermo ridotta all'1%).
+- **Sospensione profonda**: dopo 300s di inattività entra in sospensione profonda (spegnimento).
+- **Ripristino**: in sospensione leggera, toccare il pulsante centrale per risvegliare il dispositivo (la luminosità del display viene ripristinata).
 
-# 编译配置命令
+# Comandi di compilazione e configurazione
 
-**克隆工程**
+**Clona il repository**
 
 ```bash
 git clone https://github.com/78/xiaozhi-esp32.git
 ```
 
-**进入工程**
+**Entra nella cartella del progetto**
 
 ```bash
 cd xiaozhi-esp32
 ```
 
-**配置编译目标为 ESP32S3**
+**Imposta il target su ESP32S3**
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**打开 menuconfig**
+**Apri `menuconfig`**
 
 ```bash
 idf.py menuconfig
 ```
 
-**选择板子**
+**Seleziona la scheda**
 
-```bash
-- `Xiaozhi Assistant` → `Board Type` → 选择 `无名科技星智1.54 METAL(wifi)`
+```text
+Xiaozhi Assistant -> Board Type -> Wuming Technology Xingzhi 1.54 METAL (wifi)
 ```
 
-**编译**
+**Compila**
 
-```ba
+```bash
 idf.py build
 ```
 
-**下载并打开串口终端**
+**Scarica e apri il monitor seriale**
 
 ```bash
 idf.py build flash monitor

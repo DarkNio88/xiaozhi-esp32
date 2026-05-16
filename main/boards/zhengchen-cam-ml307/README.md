@@ -12,7 +12,7 @@ La versione modificata (mod) include cambiamenti di basso livello significativi;
 
 https://e.tb.cn/h.6Gl2LC7rsrswQZp?tk=qFuaV9hzh0k CZ356
 ```
-【淘宝】 「小智AI带摄像头支持识物双麦克风打断 ESP32S3N16R8开发板表情包」
+【Taobao】 "Xiaozhi AI con fotocamera — supporta riconoscimento oggetti, doppio microfono e interruzione (scheda ESP32S3N16R8)"
 https://e.tb.cn/h.hBc8Gcx9cUluJJO?tk=YW5C4LPixKg
 
 

@@ -1,43 +1,40 @@
-# 使用说明 
+# Istruzioni d'uso
 
 * [ESP32-S3-Touch-LCD-4.3C docs](https://www.waveshare.com/esp32-s3-touch-lcd-4.3c.htm)
 
-## 快速体验
+## Esperienza rapida
 
-下载编译好的 [固件](https://files.waveshare.com/wiki/ESP32-S3-Touch-LCD-4.3C/ESP32-S3-Touch-LCD-4.3C-Xiaozhi.bin) 
+Scarica il firmware compilato [qui](https://files.waveshare.com/wiki/ESP32-S3-Touch-LCD-4.3C/ESP32-S3-Touch-LCD-4.3C-Xiaozhi.bin)
 
 ```shell
 esptool.py --chip esp32s3 -p /dev/ttyACM0 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 80m --flash_size 16MB 0x00 ESP32-S3-Touch-LCD-4.3C-Xiaozhi.bin 
 ```
 
-## 基础使用
+## Uso di base
 
 * idf version: v5.5-dev
 
-1. 设置编译目标为 esp32s3
-
+1. Imposta il target di compilazione su `esp32s3`
 ```shell
 idf.py set-target esp32s3
 ```
 
-2. 修改配置 
-
+2. Modifica la configurazione
 ```shell
 cp main/boards/esp32-s3-touch-lcd-4.3c/sdkconfig.4_3c sdkconfig
 ```
 
-3. 编译烧录程序
-
+3. Compila e carica il programma
 ```shell
 idf.py build flash monitor
 ```
 
-## log
+## Log
 
-@2025/05/17 测试问题
+@2025/05/17 Problemi di test
 
-1. 返回应用界面时，需要存在此分区，否则无效
-2. 
-3. 
- 
+1. Al ritorno all'interfaccia dell'app, questa partizione deve esistere; altrimenti non ha effetto.
+2.
+3.
+
 ## TODO

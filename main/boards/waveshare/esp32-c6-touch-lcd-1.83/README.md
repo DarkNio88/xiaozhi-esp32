@@ -1,48 +1,48 @@
 
-# 产品链接
-微雪电子 ESP32-C6-Touch-LCD-1.83
+# Link prodotto
+Waveshare ESP32-C6-Touch-LCD-1.83
 
 (https://www.waveshare.net/shop/ESP32-C6-Touch-LCD-1.83.htm)
 
-# 编译配置命令
+# Comandi di compilazione e configurazione
 
-**克隆工程**
+**Clona il repository**
 
 ```bash
 git clone https://github.com/78/xiaozhi-esp32.git
 ```
 
-**进入工程**
+**Entra nella cartella del progetto**
 
 ```bash
 cd xiaozhi-esp32
 ```
 
-**配置编译目标为 ESP32C6**
+**Imposta il target di compilazione su ESP32C6**
 
 ```bash
 idf.py set-target esp32c6
 ```
 
-**打开 menuconfig**
+**Apri `menuconfig`**
 
 ```bash
 idf.py menuconfig
 ```
 
-**选择板子**
+**Seleziona la scheda**
 
-```bash
+```text
 Xiaozhi Assistant -> Board Type -> Waveshare ESP32-C6-Touch-LCD-1.83
 ```
 
-**编译**
+**Compila**
 
-```ba
+```bash
 idf.py build
 ```
 
-**下载并打开串口终端**
+**Scarica e apri il monitor seriale**
 
 ```bash
 idf.py build flash monitor

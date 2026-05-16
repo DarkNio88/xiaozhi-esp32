@@ -1,43 +1,44 @@
-# ESP32-S3 编译配置指南
+# Guida alla configurazione e compilazione (ESP32-S3)
 
-## 基本命令
+## Comandi di base
 
-### 设置目标芯片
+### Imposta il target del chip
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-### 打开配置界面：
+### Apri l'interfaccia di configurazione
 
 ```bash
 idf.py menuconfig
 ```
-### Flash 配置:
+
+### Configurazione Flash:
 
 ```
 Serial flasher config -> Flash size -> 8 MB
 ```
 
-### 分区表配置：
+### Configurazione tabella partizioni:
 
 ```
 Partition Table -> Custom partition CSV file -> partitions/v2/8m.csv
 ```
 
-### 开发板选择：
+### Selezione della scheda di sviluppo:
 
 ```
-Xiaozhi Assistant -> Board Type -> Movecall CuiCan 璀璨·AI吊坠
+Xiaozhi Assistant -> Board Type -> Movecall CuiCan (pendente AI "CuiCan")
 ```
 
-### 启用编译优化：
+### Abilita ottimizzazione compilazione:
 
 ```
 Component config → Compiler options → Optimization Level → Optimize for size (-Os)
 ```
 
-### 编译：
+### Compilazione:
 
 ```bash
 idf.py build

@@ -1,5 +1,5 @@
-## Surfer-ESP32-C3 开发板
+## Scheda di sviluppo Surfer-ESP32-C3
 
-1、参考立创·实战派C3-ESP32C3开发板，修改了TFT屏幕背光引脚，增加ADC电池电量检测功能;
-2、该开发板 flash 大小为 16MB，编译时注意选择默认的分区表。
+1. Basata sulla scheda Lichuang 'Shizhanpai C3-ESP32C3': è stato modificato il pin del retroilluminazione del TFT e aggiunta la funzione di rilevazione batteria via ADC.
+2. Questa scheda ha 16 MB di flash; durante la compilazione selezionare la tabella delle partizioni predefinita.
 

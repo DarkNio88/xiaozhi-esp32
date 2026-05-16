@@ -1,14 +1,14 @@
-# Mixgo_Nova(元控·青春) 开发板
+# Mixgo_Nova (Yuankong · Gioventù) — Scheda di sviluppo
 
 <img src="https://mixly.cn/public/icon/2024/6/09705006c1c643beb96338791ee1dea0_m.png" alt="Mixgo_Nova" width="200"/>
 
-&zwnj;**[Mixgo_Nova](https://mixly.cn/fredqian/mixgo_nova)**&zwnj; 是一款专为物联网、教育及创客项目设计的多功能开发板，集成丰富传感器与无线通信模块，支持图形化编程（Mixly）和离线语音交互，适合快速原型开发与教学。
+**[Mixgo_Nova](https://mixly.cn/fredqian/mixgo_nova)** è una scheda di sviluppo multifunzione progettata per IoT, istruzione e progetti maker; integra numerosi sensori e moduli di comunicazione wireless, supporta la programmazione grafica (Mixly) e l'interazione vocale offline, ideale per prototipazione rapida e didattica.
 
 ---
 
-## 🛠️  编译配置命令
+## 🛠️ Comandi di compilazione e configurazione
 
-**ES8374 CODE MIC采集问题：**
+**Problema di acquisizione CODE MIC con ES8374:**
 
 ```
 managed_components\espressif__esp_codec_dev\device\es8374
@@ -25,47 +25,47 @@ static int es8374_config_adc_input(audio_codec_es8374_t *codec, es_adc_input_t i
     return ret;
 }
 
-PS: L386 reg = (reg & 0xcf) | 0x14; 改成 reg = (reg & 0xcf) | 0x24;
+PS: Alla riga L386 cambiare `reg = (reg & 0xcf) | 0x14;` in `reg = (reg & 0xcf) | 0x24;`
 ```
 
-**配置编译目标为 ESP32S3：**
+**Imposta il target di compilazione su ESP32S3:**
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**打开 menuconfig：**
+**Apri menuconfig:**
 
 ```bash
 idf.py menuconfig
 ```
 
-**选择板子：**
+**Seleziona la scheda:**
 
 ```
-Xiaozhi Assistant -> Board Type -> 元控·青春
+Xiaozhi Assistant -> Board Type -> Yuankong · Gioventù
 ```
 
-**修改 psram 配置：**
+**Modifica configurazione PSRAM:**
 
 ```
 Component config -> ESP PSRAM -> SPI RAM config -> Mode (QUAD/OCT) -> QUAD Mode PSRAM
 ```
 
-**修改 Flash 配置：**
+**Modifica configurazione Flash:**
 
 ```
 Serial flasher config -> Flash size -> 8 MB
 Partition Table -> Custom partition CSV file -> partitions/v2/8m.csv
 ```
 
-**编译：**
+**Compilazione:**
 
 ```bash
 idf.py build
 ```
 
-**合并BIN：**
+**Unisci BIN:**
 
 ```bash
 idf.py merge-bin -o xiaozhi-nova.bin -f raw
