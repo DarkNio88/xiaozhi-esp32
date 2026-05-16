@@ -33,7 +33,8 @@ McpServer::~McpServer() {
 void McpServer::AddCommonTools() {
     // *Important* To speed up the response time, we add the common tools to the beginning of
     // the tools list to utilize the prompt cache.
-    // **重要** 为了提升响应速度，我们把常用的工具放在前面，利用 prompt cache 的特性。
+    // **Importante** Per migliorare i tempi di risposta, posizioniamo gli strumenti comuni
+    // all'inizio della lista per sfruttare la cache del prompt.
 
     // Backup the original tools list and restore it after adding the common tools.
     auto original_tools = std::move(tools_);
@@ -203,7 +204,7 @@ void McpServer::AddUserOnlyTools() {
 
                 ESP_LOGI(TAG, "Upload snapshot %u bytes to %s", jpeg_data.size(), url.c_str());
                 
-                // 构造multipart/form-data请求体
+                // Costruisci il corpo multipart/form-data
                 std::string boundary = "----ESP32_SCREEN_SNAPSHOT_BOUNDARY";
                 
                 auto http = Board::GetInstance().GetNetwork()->CreateHttp(3);
@@ -212,7 +213,7 @@ void McpServer::AddUserOnlyTools() {
                     throw std::runtime_error("Failed to open URL: " + url);
                 }
                 {
-                    // 文件字段头部
+                    // Intestazione del campo file
                     std::string file_header;
                     file_header += "--" + boundary + "\r\n";
                     file_header += "Content-Disposition: form-data; name=\"file\"; filename=\"screenshot.jpg\"\r\n";
@@ -221,11 +222,11 @@ void McpServer::AddUserOnlyTools() {
                     http->Write(file_header.c_str(), file_header.size());
                 }
 
-                // JPEG数据
+                // Dati JPEG
                 http->Write((const char*)jpeg_data.data(), jpeg_data.size());
 
                 {
-                    // multipart尾部
+                    // Footer multipart
                     std::string multipart_footer;
                     multipart_footer += "\r\n--" + boundary + "--\r\n";
                     http->Write(multipart_footer.c_str(), multipart_footer.size());

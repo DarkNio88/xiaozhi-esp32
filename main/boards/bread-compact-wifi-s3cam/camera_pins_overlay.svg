@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <!-- Overlay template: importa l'immagine come sfondo e allinea a 1600x1000 -->
+  <!-- Per usare: apri in Inkscape, File > Import, posiziona immagine come sfondo (0,0,1600x1000), poi regola le etichette e esporta come PNG -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#ff6600"/>
+    </marker>
+    <style type="text/css">
+      <![CDATA[
+        .label { font-family: Arial, Helvetica, sans-serif; font-size:18px; fill:#ffffff; stroke:#000000; stroke-width:0.5; }
+        .line { stroke:#ff6600; stroke-width:2; fill:none; marker-end:url(#arrow); }
+        .box { fill:#ff6600; opacity:0.9; rx:4; ry:4; }
+        .textOnBox { font-family: Arial, Helvetica, sans-serif; font-size:14px; fill:#ffffff; }
+      ]]>
+    </style>
+  </defs>
+
+  <!-- Labels: posizioni approssimative, regolare dopo import immagine -->
+  <g id="left_labels">
+    <rect x="60" y="120" width="220" height="30" class="box"/>
+    <text x="70" y="141" class="textOnBox">CAM D0: GPIO11</text>
+    <line x1="280" y1="135" x2="640" y2="280" class="line"/>
+
+    <rect x="60" y="160" width="220" height="30" class="box"/>
+    <text x="70" y="181" class="textOnBox">CAM D1: GPIO9</text>
+    <line x1="280" y1="175" x2="620" y2="320" class="line"/>
+
+    <rect x="60" y="200" width="220" height="30" class="box"/>
+    <text x="70" y="221" class="textOnBox">CAM D2: GPIO8</text>
+    <line x1="280" y1="215" x2="620" y2="360" class="line"/>
+
+    <rect x="60" y="240" width="220" height="30" class="box"/>
+    <text x="70" y="261" class="textOnBox">CAM D3: GPIO10</text>
+    <line x1="280" y1="255" x2="620" y2="400" class="line"/>
+
+    <rect x="60" y="280" width="220" height="30" class="box"/>
+    <text x="70" y="301" class="textOnBox">CAM D4: GPIO12</text>
+    <line x1="280" y1="295" x2="640" y2="440" class="line"/>
+
+    <rect x="60" y="320" width="220" height="30" class="box"/>
+    <text x="70" y="341" class="textOnBox">CAM D5: GPIO18</text>
+    <line x1="280" y1="335" x2="660" y2="480" class="line"/>
+
+    <rect x="60" y="360" width="220" height="30" class="box"/>
+    <text x="70" y="381" class="textOnBox">CAM D6: GPIO17</text>
+    <line x1="280" y1="375" x2="660" y2="520" class="line"/>
+
+    <rect x="60" y="400" width="220" height="30" class="box"/>
+    <text x="70" y="421" class="textOnBox">CAM D7: GPIO16</text>
+    <line x1="280" y1="415" x2="660" y2="560" class="line"/>
+  </g>
+
+  <g id="lower_labels">
+    <rect x="60" y="460" width="220" height="30" class="box"/>
+    <text x="70" y="481" class="textOnBox">XCLK: GPIO15 (20MHz)</text>
+    <line x1="280" y1="475" x2="700" y2="320" class="line"/>
+
+    <rect x="60" y="500" width="220" height="30" class="box"/>
+    <text x="70" y="521" class="textOnBox">PCLK: GPIO13</text>
+    <line x1="280" y1="515" x2="700" y2="360" class="line"/>
+
+    <rect x="60" y="540" width="220" height="30" class="box"/>
+    <text x="70" y="561" class="textOnBox">VSYNC: GPIO6</text>
+    <line x1="280" y1="555" x2="700" y2="400" class="line"/>
+
+    <rect x="60" y="580" width="220" height="30" class="box"/>
+    <text x="70" y="601" class="textOnBox">HREF: GPIO7</text>
+    <line x1="280" y1="595" x2="700" y2="440" class="line"/>
+
+    <rect x="60" y="620" width="220" height="30" class="box"/>
+    <text x="70" y="641" class="textOnBox">SIOC: GPIO5 (SCL)</text>
+    <line x1="280" y1="635" x2="700" y2="480" class="line"/>
+
+    <rect x="60" y="660" width="220" height="30" class="box"/>
+    <text x="70" y="681" class="textOnBox">SIOD: GPIO4 (SDA)</text>
+    <line x1="280" y1="675" x2="700" y2="520" class="line"/>
+  </g>
+
+  <text x="20" y="980" font-size="12" fill="#666">Nota: importa l'immagine del pinout come sfondo (0,0,1600x1000) e regola le posizioni delle etichette.</text>
+</svg>

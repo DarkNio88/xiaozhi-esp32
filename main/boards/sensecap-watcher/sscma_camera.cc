@@ -43,7 +43,7 @@ SscmaCamera::SscmaCamera(esp_io_expander_handle_t io_exp_handle) {
     spi_io_config.cs_gpio_num = BSP_SSCMA_CLIENT_SPI_CS;
     spi_io_config.pclk_hz = BSP_SSCMA_CLIENT_SPI_CLK;
     spi_io_config.spi_mode = 0;
-    spi_io_config.wait_delay = 10; //两个transfer之间至少延时4ms,但当前 FREERTOS_HZ=100, 延时精度只能达到10ms, 
+    spi_io_config.wait_delay = 10; // Almeno 4ms tra due transfer; con FREERTOS_HZ=100 la precisione del ritardo è ~10ms
     spi_io_config.user_ctx = NULL;
     spi_io_config.io_expander = io_exp_handle;
     spi_io_config.flags.sync_use_expander = BSP_SSCMA_CLIENT_RST_USE_EXPANDER;
@@ -104,10 +104,10 @@ SscmaCamera::SscmaCamera(esp_io_expander_handle_t io_exp_handle) {
                 bool is_object_detected = false;
                 bool is_need_wake = false;
                 
-                // 定期更新检测配置参数，避免频繁NVS访问
+                // Aggiorna periodicamente i parametri di rilevamento per evitare accessi frequenti alla NVS
                 int64_t cur_tm = esp_timer_get_time();
 
-                // 尝试获取检测框数据（目标检测模型）
+                // Prova a ottenere i dati dei box (modello di rilevamento oggetti)
                 if (sscma_utils_fetch_boxes_from_reply(reply, &boxes, &box_count) == ESP_OK && box_count > 0) {
                     for (int i = 0; i < box_count; i++) {
                         ESP_LOGI(TAG, "[box %d]: x=%d, y=%d, w=%d, h=%d, score=%d, target=%d", i,  \
@@ -120,8 +120,8 @@ SscmaCamera::SscmaCamera(esp_io_expander_handle_t io_exp_handle) {
                         }
                     }
                     free(boxes);
-                } else if (sscma_utils_fetch_classes_from_reply(reply, &classes, &class_count) == ESP_OK && class_count > 0) {
-                    // 尝试获取分类数据（分类模型）
+                    } else if (sscma_utils_fetch_classes_from_reply(reply, &classes, &class_count) == ESP_OK && class_count > 0) {
+                    // Prova a ottenere i dati di classificazione (modello di classificazione)
                     for (int i = 0; i < class_count; i++) {
                         ESP_LOGI(TAG, "[class %d]: target=%d, score=%d", i,
                                 classes[i].target, classes[i].score);
@@ -132,8 +132,8 @@ SscmaCamera::SscmaCamera(esp_io_expander_handle_t io_exp_handle) {
                         }
                     }
                     free(classes);
-                } else if (sscma_utils_fetch_points_from_reply(reply, &points, &point_count) == ESP_OK && point_count > 0) {
-                     // 尝试获取关键点数据（姿态估计模型）
+                 } else if (sscma_utils_fetch_points_from_reply(reply, &points, &point_count) == ESP_OK && point_count > 0) {
+                     // Prova a ottenere punti chiave (modello di stima della postura)
                     for (int i = 0; i < point_count; i++) {
                         ESP_LOGI(TAG, "[point %d]: x=%d, y=%d, z=%d, score=%d, target=%d", i, 
                                 points[i].x, points[i].y, points[i].z, points[i].score, points[i].target);
@@ -146,18 +146,18 @@ SscmaCamera::SscmaCamera(esp_io_expander_handle_t io_exp_handle) {
                     free(points);
                 }
 
-                // 如果需要开始冷却期，现在开始计时
-                if (self->need_start_cooldown) { // 回调暂停，标志保持，等待回调恢复后开始计时
+                // Se è necessario avviare il periodo di cooldown, inizializza il timer ora
+                if (self->need_start_cooldown) { // Callback in pausa; segnala e avvia il conteggio quando il callback riprende
                     self->state_start_time = cur_tm;
                     self->need_start_cooldown = false;
                     ESP_LOGI(TAG, "Starting cooldown timer");
                 }
                 
-                // 状态机驱动的检测逻辑 - 只在人员出现时触发
+                // Logica di rilevamento guidata da macchina a stati - trigger solo quando appare un oggetto/persona
                 switch (self->detection_state) {
                     case SscmaCamera::IDLE:
                         if (is_object_detected) {
-                            // 人员出现，开始验证（这是从无到有的转换）
+                            // Oggetto rilevato: inizia la fase di validazione (transizione da assenza a presenza)
                             self->detection_state = SscmaCamera::VALIDATING;
                             self->state_start_time = cur_tm; // 记录物体出现时间
                             self->last_detected_time = cur_tm; // 初始化最后检测时间
@@ -174,7 +174,7 @@ SscmaCamera::SscmaCamera(esp_io_expander_handle_t io_exp_handle) {
                                 is_need_wake = true;
                             }
                         } else {
-                            // 验证期间人员离开，检查去抖动时间
+                            // Durante la validazione l'oggetto è scomparso: controlla il tempo di debounce
                             if (self->last_detected_time > 0 && 
                                 (cur_tm - self->last_detected_time) >= self->detect_debounce_sec * 1000000LL) {
                                 // 去抖动时间已过，确认人员已离开，回到空闲
@@ -186,7 +186,7 @@ SscmaCamera::SscmaCamera(esp_io_expander_handle_t io_exp_handle) {
                         break;
                         
                     case SscmaCamera::COOLDOWN:
-                        // 冷却期，需要满足两个条件：1)object离开 2)过了15秒
+                        // Periodo di cooldown: vengono richieste due condizioni: 1) l'oggetto è assente 2) è trascorso l'intervallo di cooldown
                         if (!is_object_detected && 
                             (cur_tm - self->state_start_time) >= (self->detect_invoke_interval_sec * 1000000LL)) {
                             // object离开且冷却时间到，回到空闲状态
@@ -202,7 +202,7 @@ SscmaCamera::SscmaCamera(esp_io_expander_handle_t io_exp_handle) {
                     ESP_LOGI(TAG, "Validation complete, triggering conversation (type=%d, res=%dx%d)", 
                              self->detect_target, width, height);
                     
-                    // 触发对话
+                    // Trigger della conversazione
                     std::string wake_word;
                     if ( model_type  == 0 ) {
                         std::string cached_target_name = "object";
@@ -226,7 +226,7 @@ SscmaCamera::SscmaCamera(esp_io_expander_handle_t io_exp_handle) {
                     printf("wake_word:%s\n", wake_word.c_str());
                     Application::GetInstance().WakeWordInvoke(wake_word);
                     
-                    // 进入冷却状态，标记需要开始冷却期；如下变量将在会话结束后被使用，等待回调恢复后开始计时
+                    // Entra nello stato COOLDOWN e segna per avviare il periodo di cooldown; le variabili sottostanti saranno usate al termine della conversazione e il conteggio inizierà quando il callback riprende
                     self->detection_state = SscmaCamera::COOLDOWN;
                     self->need_start_cooldown = true;
                 }
@@ -237,12 +237,12 @@ SscmaCamera::SscmaCamera(esp_io_expander_handle_t io_exp_handle) {
                 if (sscma_utils_fetch_image_from_reply(reply, &img, &img_size) == ESP_OK)
                 {
                     ESP_LOGI(TAG, "image_size: %d\n", img_size);
-                    // 将数据通过队列发送出去
+                    // Invia i dati tramite la coda
                     SscmaData data;
                     data.img = (uint8_t*)img;
                     data.len = img_size;
 
-                    // 清空队列，保证只保存最新的数据
+                    // Svuota la coda per assicurarsi di mantenere solo l'ultimo dato
                     SscmaData dummy;
                     while (xQueueReceive(self->sscma_data_queue_, &dummy, 0) == pdPASS) {
                         if (dummy.img) {
@@ -250,7 +250,7 @@ SscmaCamera::SscmaCamera(esp_io_expander_handle_t io_exp_handle) {
                         }
                     }
                     xQueueSend(self->sscma_data_queue_, &data, 0);
-                    // 注意：img 的释放由接收方负责
+                    // Nota: la liberazione della memoria di 'img' è responsabilità del ricevitore
                 }
                 break;
             default:

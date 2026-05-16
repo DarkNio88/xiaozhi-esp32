@@ -12,7 +12,7 @@ static const char* TAG = "OttoMovements";
 Otto::Otto() {
     is_otto_resting_ = false;
     has_hands_ = false;
-    // 初始化所有舵机管脚为-1（未连接）
+    // Inizializza tutti i pin dei servomotori a -1 (non connessi)
     for (int i = 0; i < SERVO_COUNT; i++) {
         servo_pins_[i] = -1;
         servo_trim_[i] = 0;
@@ -37,6 +37,7 @@ void Otto::Init(int left_leg, int right_leg, int left_foot, int right_foot, int 
     servo_pins_[RIGHT_HAND] = right_hand;
 
     // 检查是否有手部舵机
+    // Verifica se sono presenti servomotori delle mani
     has_hands_ = (left_hand != -1 && right_hand != -1);
 
     AttachServos();
@@ -200,13 +201,15 @@ void Otto::Execute(int amplitude[SERVO_COUNT], int offset[SERVO_COUNT], int peri
 }
 
 //---------------------------------------------------------
-//-- Execute2: 使用绝对角度作为振荡中心
-//--  Parameters:
-//--    amplitude: 振幅数组（每个舵机的振荡幅度）
-//--    center_angle: 绝对角度数组（0-180度），作为振荡中心位置
-//--    period: 周期（毫秒）
-//--    phase_diff: 相位差数组（弧度）
-//--    steps: 步数/周期数（可为小数）
+//---------------------------------------------------------
+//-- Execute2: usa angoli assoluti come centro dell'oscillazione
+//--  Parametri:
+//--    amplitude: array delle ampiezze (ampiezza oscillazione per ogni servomotore)
+//--    center_angle: array di angoli assoluti (0-180°) usati come centro di oscillazione
+//--    period: periodo (millisecondi)
+//--    phase_diff: array delle differenze di fase (in radianti)
+//--    steps: numero di passi/cicli (può essere frazionario)
+//---------------------------------------------------------
 //---------------------------------------------------------
 void Otto::Execute2(int amplitude[SERVO_COUNT], int center_angle[SERVO_COUNT], int period,
                     double phase_diff[SERVO_COUNT], float steps = 1.0) {
@@ -237,23 +240,23 @@ void Otto::Execute2(int amplitude[SERVO_COUNT], int center_angle[SERVO_COUNT], i
 ///////////////////////////////////////////////////////////////////
 void Otto::Home(bool hands_down) {
     if (is_otto_resting_ == false) {  // Go to rest position only if necessary
-        // 为所有舵机准备初始位置值
+        // Prepara i valori di posizione iniziali per tutti i servomotori
         int homes[SERVO_COUNT];
         for (int i = 0; i < SERVO_COUNT; i++) {
             if (i == LEFT_HAND || i == RIGHT_HAND) {
                 if (hands_down) {
-                    // 如果需要复位手部，设置为默认值
+                    // Se è necessario resettare le mani, impostare il valore di default
                     if (i == LEFT_HAND) {
                         homes[i] = HAND_HOME_POSITION;
                     } else {                                  // RIGHT_HAND
                         homes[i] = 180 - HAND_HOME_POSITION;  // 右手镜像位置
                     }
                 } else {
-                    // 如果不需要复位手部，保持当前位置
+                    // Se non è necessario resettare le mani, mantenere la posizione corrente
                     homes[i] = servo_[i].GetPosition();
                 }
             } else {
-                // 腿部和脚部舵机始终复位
+                // I servomotori di gambe e piedi sono sempre resettati
                 homes[i] = 90;
             }
         }

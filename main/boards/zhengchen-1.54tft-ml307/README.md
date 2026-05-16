@@ -1,44 +1,44 @@
-# 产品相关介绍网址
+# Siti web correlati al prodotto
 
 ```http
 https://e.tb.cn/h.6Gl2LC7rsrswQZp?tk=qFuaV9hzh0k CZ356
 ```
 
-# 编译配置命令
+# Comandi di configurazione e compilazione
 
-**配置编译目标为 ESP32S3：**
+**Imposta il target di compilazione su ESP32S3:**
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**打开 menuconfig：**
+**Apri menuconfig:**
 
 ```bash
 idf.py menuconfig
 ```
 
-**选择板子：**
+**Seleziona la scheda:**
 
 ```
 Xiaozhi Assistant -> Board Type -> zhengchen-1.54tft-ml307
 ```
 
-```
+**Compilazione:**
 
-**编译：**
-
-bash
+```bash
 idf.py build
 ```
 
-**下载：**
+**Download (flash + monitor):**
+
+```bash
 idf.py build flash monitor
+```
 
-进行下载和显示日志
+Esegue il flashing e mostra i log della seriale.
 
-
-**固件生成：**
+**Generazione firmware:**
 
 ```bash
 idf.py merge-bin

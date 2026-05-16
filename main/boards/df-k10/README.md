@@ -1,53 +1,54 @@
-# DFRobot 行空板 K10
+# DFRobot K10 (Xingkong Board)
 
-## 按键配置
-* A：短按-打断/唤醒，长按1s-音量调大
-* B：短按-打断/唤醒，长按1s-音量调小
+## Configurazione pulsanti
+- A: breve pressione - interrompi / risveglia; pressione lunga 1s - aumenta volume
+- B: breve pressione - interrompi / risveglia; pressione lunga 1s - diminuisci volume
 
-## 编译配置命令
+## Comandi di configurazione e compilazione
 
-**配置编译目标为 ESP32S3：**
+**Imposta il target di compilazione su ESP32S3:**
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**打开 menuconfig：**
+**Apri menuconfig:**
 
 ```bash
 idf.py menuconfig
 ```
 
-**选择板子：**
+**Seleziona la scheda:**
 
 ```
-Xiaozhi Assistant -> Board Type -> DFRobot 行空板 K10
+Xiaozhi Assistant -> Board Type -> DFRobot K10 (Xingkong Board)
 ```
 
-**修改 psram 配置：**
+**Modifica la configurazione PSRAM:**
 
 ```
 Component config -> ESP PSRAM -> SPI RAM config -> Mode (QUAD/OCT) -> Octal Mode PSRAM
 ```
 
-**使能摄像头缓冲区大小端交换：**
+**Abilita lo swapping dell'endianness del buffer della fotocamera:**
 
 ```
 Xiaozhi Assistant -> Camera Configuration -> Enable software camera buffer endianness swapping
 ```
 
-**配置摄像头：**
+**Configura la fotocamera:**
+
 ```
-Component config -> Espressif Camera Sensors Configurations -> Camera Sensor Configuration -> Select and Set Camera Sensor -> GC2145 ->  Auto detect GC2145
+Component config -> Espressif Camera Sensors Configurations -> Camera Sensor Configuration -> Select and Set Camera Sensor -> GC2145 -> Auto detect GC2145
 
 ```
 
 ```
-Component config -> Espressif Camera Sensors Configurations -> Camera Sensor Configuration -> Select and Set Camera Sensor -> GC2145 ->  Select default output format for DVP interface (RGB565 800x600 20fps, DVP 8-bit, 20M input) -> RGB565 800x600 20fps, DVP 8-bit, 20M input
+Component config -> Espressif Camera Sensors Configurations -> Camera Sensor Configuration -> Select and Set Camera Sensor -> GC2145 -> Select default output format for DVP interface (RGB565 800x600 20fps, DVP 8-bit, 20M input) -> RGB565 800x600 20fps, DVP 8-bit, 20M input
 
 ```
 
-**编译：**
+**Compilazione:**
 
 ```bash
 idf.py build

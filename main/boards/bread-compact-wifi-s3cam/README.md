@@ -1,30 +1,29 @@
-硬件基于基于ESP32S3CAM开发板，代码基于bread-compact-wifi-lcd修改
-使用的摄像头是OV2640
-注意因为摄像头占用IO较多，所以占用了ESP32S3的USB 19 20两个引脚
-连线方式参考config.h文件中对引脚的定义
+L'hardware è basato sulla scheda di sviluppo ESP32S3CAM; il codice è una modifica di `bread-compact-wifi-lcd`.
+La fotocamera utilizzata è OV2640.
+Nota: la fotocamera occupa molte linee IO, pertanto utilizza i pin USB 19 e 20 dell'ESP32S3.
+Il cablaggio è definito in `config.h`.
 
- 
-# 编译配置命令
+# Comandi di configurazione e compilazione
 
-**配置编译目标为 ESP32S3：**
+**Imposta il target di compilazione su ESP32S3:**
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**打开 menuconfig：**
+**Apri menuconfig:**
 
 ```bash
 idf.py menuconfig
 ```
 
-**选择板子：**
+**Seleziona la scheda:**
 
 ```bash
-Xiaozhi Assistant -> Board Type ->面包板新版接线（WiFi）+ LCD + Camera
+Xiaozhi Assistant -> Board Type -> Breadboard nuovo cablaggio (WiFi) + LCD + Camera
 ```
 
-**编译烧入：**
+**Compilazione e flashing:**
 
 ```bash
 idf.py build flash

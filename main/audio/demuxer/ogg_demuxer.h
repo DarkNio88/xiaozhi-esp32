@@ -22,20 +22,20 @@ private:
     };
 
 
-    // 使用固定大小的缓冲区避免动态分配
+    // Usa buffer a dimensione fissa per evitare allocazioni dinamiche
     struct context_t {
-        bool packet_continued{false};   // 当前包是否跨多个段
-        uint8_t header[27];             // Ogg页头
-        uint8_t seg_table[255];         // 当前存储的段表
-        uint8_t packet_buf[8192];       // 8KB包缓冲区
-        size_t packet_len = 0;          // 缓冲区中累计的数据长度
-        size_t seg_count = 0;           // 当前页段数
-        size_t seg_index = 0;           // 当前处理的段索引
-        size_t data_offset = 0;         // 解析当前阶段已读取的字节数
-        size_t bytes_needed = 0;        // 解析当前字段还需要读取的字节数
-        size_t seg_remaining = 0;       // 当前段剩余需要读取的字节数
-        size_t body_size = 0;           // 数据体总大小
-        size_t body_offset = 0;         // 数据体已读取的字节数
+        bool packet_continued{false};   // Se il pacchetto è distribuito su più segmenti
+        uint8_t header[27];             // Intestazione pagina Ogg
+        uint8_t seg_table[255];         // Tabella dei segmenti memorizzata
+        uint8_t packet_buf[8192];       // Buffer pacchetto (8 KB)
+        size_t packet_len = 0;          // Lunghezza dei dati accumulati nel buffer
+        size_t seg_count = 0;           // Numero di segmenti nella pagina corrente
+        size_t seg_index = 0;           // Indice del segmento attualmente elaborato
+        size_t data_offset = 0;         // Byte letti nella fase di parsing corrente
+        size_t bytes_needed = 0;        // Byte ancora necessari per completare il campo corrente
+        size_t seg_remaining = 0;       // Byte rimanenti da leggere nel segmento corrente
+        size_t body_size = 0;           // Dimensione totale del corpo dati
+        size_t body_offset = 0;         // Byte già letti del corpo dati
     };
     
 public:
@@ -47,8 +47,8 @@ public:
     
     size_t Process(const uint8_t* data, size_t size);
 
-    /// @brief 设置解封装完毕后回调处理函数
-    /// @param on_demuxer_finished 
+    /// @brief Imposta la callback chiamata al termine del demuxing
+    /// @param on_demuxer_finished Callback: (data, sample_rate, len)
     void OnDemuxerFinished(std::function<void(const uint8_t* data, int sample_rate, size_t len)> on_demuxer_finished) {
         on_demuxer_finished_ = on_demuxer_finished;
     }

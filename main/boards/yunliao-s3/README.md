@@ -1,97 +1,97 @@
-# 小智云聊 S3
+# Xiaozhi Cloud Chat S3
 
-## 简介
+## Introduzione
 
-小智云聊 S3 是小智 AI 的魔改项目，是首个 2.8 寸护眼大屏+大字体+2000mah 大电池的量产成品，做了大量创新和优化。
+Xiaozhi Cloud Chat S3 è un progetto modificato di Xiaozhi AI: è il primo prodotto di produzione con schermo grande da 2.8" a tutela degli occhi, caratteri di grandi dimensioni e batteria da 2000 mAh. Include numerose innovazioni e ottimizzazioni.
 
-## 官方版
+## Versione ufficiale
 
-官方版代码在小智 AI 主项目中维护，跟随主项目的一起版本更新，便于用户自行扩展和第三方固件扩展。支持语音唤醒、语音打断、OTA、4G 自由切换等功能。
+Il codice della versione ufficiale è mantenuto nel progetto principale Xiaozhi AI e segue gli aggiornamenti del progetto, facilitando estensioni personalizzate e firmware di terze parti. Supporta wake-word, interruzione vocale, OTA e commutazione libera 4G/Wi‑Fi.
 
-> ### 按键操作
->
-> - **开机**: 关机状态，长按 1 秒后释放按键，自动开机。
-> - **关机**: 开机状态，长按 1 秒后释放按键，标题栏会显示'请稍候'，再等 2 秒自动关机。
-> - **唤醒/打断**: 正常通话环境下，单击按键。
-> - **切换 4G/Wifi**: 启动过程或者配网界面，1 秒钟内双击按键（需安装 4G 模块）。
-> - **切换语音(AEC)打断模式**: 正常启动后，在空闲无对话模式下，1 秒钟内双击按键，循环切换语音打断模式。
-> - **重新配网**: 开机状态，1 秒钟内三击按键，会自动重启并进入配网界面。
+### Operazioni con i pulsanti
 
-> ### 语音指令
->
-> - **打开/关闭语音(AEC)打断模式**: 在播放音乐时，需要关闭语音打断模式，否则可能会打断音乐播放。
-> - **切换 IPS 屏幕显示模式**: 新版小智云聊 S3 升级了 IPS 屏幕，需要切换屏幕显示模式后才能正常显示，可以来回切换。
+- **Accensione**: dallo stato spento, tenere premuto il pulsante per 1 secondo e poi rilasciare per accendere.
+- **Spegnimento**: da acceso, tenere premuto il pulsante per 1 secondo; la barra del titolo mostrerà "请稍候" e dopo 2 secondi il dispositivo si spegnerà automaticamente.
+- **Sveglia/Interruzione**: in una normale conversazione, premere una volta il pulsante.
+- **Commutazione 4G/Wi‑Fi**: durante l'avvio o nella schermata di configurazione della rete, fare doppio clic sul pulsante entro 1 secondo (richiede modulo 4G installato).
+- **Cambia modalità di interruzione vocale (AEC)**: dopo l'avvio, quando è in stato inattivo, fare doppio clic sul pulsante entro 1 secondo per scorrere le modalità di interruzione vocale.
+- **Ripristino della configurazione di rete**: a dispositivo acceso, premere tre volte il pulsante entro 1 secondo per riavviare e avviare la procedura di configurazione della rete.
 
-## 魔改版
+### Comandi vocali
 
-魔改版由于底层改动太大，代码单独维护，定期合并主项目代码。
+- **Abilita/disabilita interruzione vocale (AEC)**: quando si riproduce musica, disattivare l'interruzione vocale per evitare che la riproduzione venga interrotta.
+- **Cambia modalità di visualizzazione IPS**: la nuova versione di Xiaozhi Cloud Chat S3 utilizza uno schermo IPS; potrebbe essere necessario cambiare la modalità di visualizzazione per ottenere il rendering corretto.
 
-> ### 为什么是魔改
->
-> - 首个实现微信二维码配网。
-> - 首个支持单手机配网。
-> - 首个支持扫二维码访问控制台。
-> - 首发支持繁体、日文、英文版界面。
-> - 首个全语音操控模式。
-> - 独家提供一键刷机脚本等多种刷机方式。
+## Versione modificata (mod)
 
-## 版本区别
+La versione modificata (mod) è mantenuta separatamente a causa di estese modifiche a basso livello e viene periodicamente unita al ramo principale.
 
-> | 特性           | 官方版 | 魔改版 |
-> | -------------- | ------ | ------ |
-> | 语音打断       | ✓      | ✓      |
-> | 4G 功能        | ✓      | ✓      |
-> | 自动更新固件   | ✓      | X      |
-> | 第三方固件支持 | ✓      | X      |
-> | 天气待机界面   | X      | ✓      |
-> | 闹钟提醒       | X      | ✓      |
-> | 网络音乐播放   | X      | ✓      |
-> | 微信扫码配网   | X      | ✓      |
-> | 单手机配网     | X      | ✓      |
-> | 扫码访问控制台 | X      | ✓      |
-> | 繁日英文界面   | X      | ✓      |
-> | 多语言支持     | 需自行编译      | ✓      |
-> | 外接蓝牙音箱/耳机   | ✓      | ✓      |
+### Perché è una mod
 
-# 编译配置命令
+- Prima implementazione del provisioning via QR code WeChat.
+- Prima a supportare provisioning da un singolo telefono.
+- Prima a supportare accesso alla console tramite scansione QR.
+- Prima a fornire interfacce in tradizionale, giapponese e inglese.
+- Prima a offrire una modalità completamente vocale.
+- Fornisce script dedicati per il flashing e altre opzioni di aggiornamento.
 
-**克隆工程**
+## Differenze tra le versioni
+
+| Caratteristica | Versione ufficiale | Versione mod |
+| -------------- | ------------------ | ------------ |
+| Interruzione vocale | ✓ | ✓ |
+| Funzionalità 4G | ✓ | ✓ |
+| Aggiornamento automatico firmware | ✓ | X |
+| Supporto firmware terzi | ✓ | X |
+| Schermata standby meteo | X | ✓ |
+| Promemoria sveglia | X | ✓ |
+| Riproduzione musica da rete | X | ✓ |
+| Provisioning via QR WeChat | X | ✓ |
+| Provisioning da singolo telefono | X | ✓ |
+| Accesso console via QR | X | ✓ |
+| Interfacce tradizionale/giapponese/inglese | X | ✓ |
+| Supporto multilingua | richiede compilazione manuale | ✓ |
+| Supporto altoparlanti/cuffie Bluetooth esterne | ✓ | ✓ |
+
+# Comandi di compilazione e configurazione
+
+**Clona il repository**
 
 ```bash
 git clone https://github.com/78/xiaozhi-esp32.git
 ```
 
-**进入工程**
+**Entra nella cartella del progetto**
 
 ```bash
 cd xiaozhi-esp32
 ```
 
-**配置编译目标为 ESP32S3**
+**Imposta il target di compilazione su ESP32S3**
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**打开 menuconfig**
+**Apri `menuconfig`**
 
 ```bash
 idf.py menuconfig
 ```
 
-**选择板子**
+**Seleziona la scheda**
 
 ```bash
-- `Xiaozhi Assistant` → `Board Type` → 选择 `小智云聊-S3` → 选择 `Enable Device-Side AEC`
+Xiaozhi Assistant -> Board Type -> seleziona `小智云聊-S3` -> abilita `Enable Device-Side AEC`
 ```
 
-**编译**
+**Compilazione**
 
-```ba
+```bash
 idf.py build
 ```
 
-**下载并打开串口终端**
+**Compila, flash e apri il monitor seriale**
 
 ```bash
 idf.py build flash monitor

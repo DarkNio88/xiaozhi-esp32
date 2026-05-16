@@ -1,81 +1,82 @@
 # ESP-VoCat 喵伴
 
-## 简介
+## Introduzione
 
 <div align="center">
-    <a href="https://oshwhub.com/esp-college/echoear"><b> 立创开源平台 </b></a>
+    <a href="https://oshwhub.com/esp-college/echoear"><b> Pagina progetto su Oshwhub </b></a>
 </div>
 
-ESP-VoCat 喵伴是一款智能 AI 开发套件，搭载 ESP32-S3-WROOM-1 模组，1.85 寸 QSPI 圆形触摸屏，双麦阵列，支持离线语音唤醒与声源定位算法。硬件详情等可查看[立创开源项目](https://oshwhub.com/esp-college/echoear)。
+ESP-VoCat 喵伴 è un kit di sviluppo AI intelligente basato sul modulo ESP32-S3-WROOM-1, dotato di uno schermo tattile QSPI circolare da 1.85" e di un array a doppio microfono. Supporta il wake-word offline e algoritmi di localizzazione della sorgente sonora. Per i dettagli hardware consultare la pagina progetto su Oshwhub.
 
-## 配置、编译命令
+## Configurazione e comandi di compilazione
 
-**配置编译目标为 ESP32S3**
+**Imposta il target di compilazione su ESP32S3**
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**打开 menuconfig 并配置**
+**Apri `menuconfig` e configura**
 
 ```bash
 idf.py menuconfig
 ```
 
-分别配置如下选项：
+Configurare le seguenti opzioni:
 
-### 基本配置
-- `Xiaozhi Assistant` → `Board Type` → 选择 `Espressif ESP-VoCat`
+### Configurazione di base
+- `Xiaozhi Assistant` → `Board Type` → selezionare `Espressif ESP-VoCat`
 
-### UI风格选择
+### Scelta dello stile UI
 
-ESP-VoCat 支持多种不同的 UI 显示风格，通过 menuconfig 配置选择：
+ESP-VoCat supporta diversi stili di interfaccia; selezionarli tramite `menuconfig`:
 
-- `Xiaozhi Assistant` → `Select display style` → 选择显示风格
+- `Xiaozhi Assistant` → `Select display style` → seleziona lo stile di visualizzazione
 
-#### 可选风格
+#### Stili disponibili
 
-##### 表情动画风格 (Emote animation style) - 推荐
-- **配置选项**: `USE_EMOTE_MESSAGE_STYLE`
-- **特点**: 使用自定义的 `EmoteDisplay` 表情显示系统
-- **功能**: 支持丰富的表情动画、眼睛动画、状态图标显示
-- **适用**: 智能助手场景，提供更生动的人机交互体验
-- **类**: `emote::EmoteDisplay`
+##### Stile animazione Emote (Emote animation style) — Consigliato
+- **Opzione di configurazione**: `USE_EMOTE_MESSAGE_STYLE`
+- **Caratteristiche**: utilizza il sistema personalizzato `EmoteDisplay` per mostrare espressioni
+- **Funzionalità**: supporta animazioni di espressioni, animazioni oculari e icone di stato
+- **Adatto a**: scenari di assistente intelligente per un'interazione più vivace
+- **Classe**: `emote::EmoteDisplay`
 
-**⚠️ 重要**: 选择此风格需要额外配置自定义资源文件：
-1. `Xiaozhi Assistant` → `Flash Assets` → 选择 `Flash Custom Assets`
-2. `Xiaozhi Assistant` → `Custom Assets File` → 填入资源文件地址：
-   ```
-   https://dl.espressif.com/AE/wn9_nihaoxiaozhi_tts-font_puhui_common_20_4-echoear.bin
-   ```
+**⚠️ Importante**: per questo stile sono richieste risorse personalizzate:
+1. `Xiaozhi Assistant` → `Flash Assets` → selezionare `Flash Custom Assets`
+2. `Xiaozhi Assistant` → `Custom Assets File` → inserire l'URL del file di risorse:
 
-##### 默认消息风格 (Enable default message style)
-- **配置选项**: `USE_DEFAULT_MESSAGE_STYLE` (默认)
-- **特点**: 使用标准的消息显示界面
-- **功能**: 传统的文本和图标显示界面
-- **适用**: 标准的对话场景
-- **类**: `SpiLcdDisplay`
+```
+https://dl.espressif.com/AE/wn9_nihaoxiaozhi_tts-font_puhui_common_20_4-echoear.bin
+```
 
-##### 微信消息风格 (Enable WeChat Message Style)
-- **配置选项**: `USE_WECHAT_MESSAGE_STYLE`
-- **特点**: 仿微信聊天界面风格
-- **功能**: 类似微信的消息气泡显示
-- **适用**: 喜欢微信风格的用户
-- **类**: `SpiLcdDisplay`
+##### Stile messaggi predefinito (Enable default message style)
+- **Opzione**: `USE_DEFAULT_MESSAGE_STYLE` (predefinito)
+- **Caratteristiche**: interfaccia standard per la visualizzazione dei messaggi
+- **Funzionalità**: visualizzazione tradizionale di testo e icone
+- **Adatto a**: scenari di conversazione standard
+- **Classe**: `SpiLcdDisplay`
 
-> **说明**: ESP-VoCat 喵伴使用16MB Flash，需要使用专门的分区表配置来合理分配存储空间给应用程序、OTA更新、资源文件等。
+##### Stile messaggi WeChat (Enable WeChat Message Style)
+- **Opzione**: `USE_WECHAT_MESSAGE_STYLE`
+- **Caratteristiche**: interfaccia in stile chat di WeChat
+- **Funzionalità**: visualizzazione a bolle simile a WeChat
+- **Adatto a**: utenti che preferiscono lo stile WeChat
+- **Classe**: `SpiLcdDisplay`
 
-按 `S` 保存，按 `Q` 退出。
+> **Nota**: ESP-VoCat 喵伴 utilizza 16MB di Flash; è necessario usare una tabella di partizionamento dedicata per ripartire correttamente lo spazio tra applicazione, aggiornamenti OTA e file di risorse.
 
-**编译**
+Premere `S` per salvare e `Q` per uscire.
+
+**Compilazione**
 
 ```bash
 idf.py build
 ```
 
-**烧录**
+**Flash**
 
-将 ESP-VoCat 喵伴连接至电脑，**注意打开电源**，并运行：
+Collegare ESP-VoCat 喵伴 al computer, assicurarsi che sia alimentato, quindi eseguire:
 
 ```bash
 idf.py flash

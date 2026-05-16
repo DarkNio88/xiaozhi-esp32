@@ -1,41 +1,41 @@
-# 四博智联AI陪伴盒子
+# SiBo Zhilian AI Companion Box
 
-# 特性
-* 使用PDM麦克风
-* 使用共阳极LED
+# Caratteristiche
+- Usa microfono PDM
+- Usa LED ad anodo comune
 
-## 按键配置
-* BUTTON3：短按-打断/唤醒
-* BUTTON1：音量+
-* BUTTON2：音量-
+## Configurazione pulsanti
+- BUTTON3: breve pressione - interrompi / risveglia
+- BUTTON1: Volume +
+- BUTTON2: Volume -
 
-## 编译配置命令
+## Comandi di configurazione e compilazione
 
-**配置编译目标为 ESP32S3：**
+**Imposta il target di compilazione su ESP32S3:**
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**打开 menuconfig：**
+**Apri menuconfig:**
 
 ```bash
 idf.py menuconfig
 ```
 
-**选择板子：**
+**Seleziona la scheda:**
 
 ```
-Xiaozhi Assistant -> Board Type -> 四博智联AI陪伴盒子
+Xiaozhi Assistant -> Board Type -> SiBo Zhilian AI Companion Box
 ```
 
-**修改 psram 配置：**
+**Modifica la configurazione PSRAM:**
 
 ```
 Component config -> ESP PSRAM -> SPI RAM config -> Mode (QUAD/OCT) -> Octal Mode PSRAM
 ```
 
-**编译：**
+**Compilazione:**
 
 ```bash
 idf.py build

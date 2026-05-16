@@ -1,45 +1,45 @@
 # AtomEchoS3R
-## 简介
+## Introduzione
 
-AtomEchoS3R 是 M5Stack 推出的基于 ESP32-S3-PICO-1-N8R8 的物联网可编程控制器，采用了 ES8311 单声道音频解码器、MEMS 麦克风和 NS4150B 功率放大器的集成方案。
+AtomEchoS3R è un controller IoT programmabile prodotto da M5Stack basato su ESP32-S3-PICO-1-N8R8; integra il codec audio mono ES8311, microfoni MEMS e l'amplificatore di potenza NS4150B.
 
-开发版**不带屏幕、不带额外按键**，需要使用语音唤醒。必要时，需要使用 `idf.py monitor` 查看 log 以确定运行状态。
+La versione di sviluppo **non include display né pulsanti aggiuntivi**: è necessario usare il wake word per l'attivazione vocale. Se necessario, utilizzare `idf.py monitor` per visualizzare i log e verificare lo stato di esecuzione.
 
-## 配置、编译命令
+## Configurazione e comandi di compilazione
 
-**配置编译目标为 ESP32S3**
+**Imposta il target di compilazione su ESP32S3**
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**打开 menuconfig 并配置**
+**Apri menuconfig e configura**
 
 ```bash
 idf.py menuconfig
 ```
 
-分别配置如下选项：
+Configura le seguenti opzioni:
 
-- `Xiaozhi Assistant` → `Board Type` → 选择 `AtomEchoS3R`
-- `Partition Table` → `Custom partition CSV file` → 删除原有内容，输入 `partitions/v2/8m.csv`
-- `Serial flasher config` → `Flash size` → 选择 `8 MB`
-- `Component config` → `ESP PSRAM` → `Support for external, SPI-connected RAM` → `SPI RAM config` → 选择 `Octal Mode PSRAM`
+- `Xiaozhi Assistant` → `Board Type` → seleziona `AtomEchoS3R`
+- `Partition Table` → `Custom partition CSV file` → rimuovi il contenuto esistente e inserisci `partitions/v2/8m.csv`
+- `Serial flasher config` → `Flash size` → seleziona `8 MB`
+- `Component config` → `ESP PSRAM` → `Support for external, SPI-connected RAM` → `SPI RAM config` → seleziona `Octal Mode PSRAM`
 
-按 `S` 保存，按 `Q` 退出。
+Premi `S` per salvare e `Q` per uscire.
 
-**编译**
+**Compilazione**
 
 ```bash
 idf.py build
 ```
 
-**烧录**
+**Scrittura (flash)**
 
-将 AtomEchoS3R 连接到电脑，按住侧面 RESET 按键，直到 RESET 按键下方绿灯闪烁。
+Collega AtomEchoS3R al computer e tieni premuto il pulsante RESET laterale finché il LED verde sotto il pulsante non lampeggia.
 
 ```bash
 idf.py flash
 ```
 
-烧录完毕后，按一下 RESET 按钮重启设备。
+Dopo il flash, premi il pulsante RESET una volta per riavviare il dispositivo.

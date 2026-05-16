@@ -1,38 +1,38 @@
-# 编译命令
+# Comandi di compilazione
 
-## 一键编译
+## Compilazione con un comando
 
 ```bash
 python scripts/release.py aipi-lite
 ```
 
-## 手动配置编译
+## Configurazione e compilazione manuale
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**配置**
+**Configurazione**
 
 ```bash
 idf.py menuconfig
 ```
 
-选择板子
+Seleziona la scheda
 
 ```
 Xiaozhi Assistant -> Board Type -> AIPI-Lite
 ```
 
-## 编译烧入
+## Compilazione e scrittura (flash)
 
 ```bash
 idf.py -DBOARD_NAME=aipi-lite build flash
 ```
 
-注意: 如果当前设备出货之前是AiPi-Lite 固件(非小智版本),请特别小心处理闪存固件分区地址，以避免错误擦除 AiPi-Lite 的自身设备信息（EUI 等），否则设备即使恢复成Xorigin固件也无法正确连接到 服务器！所以在刷写固件之前，请务必记录设备的相关必要信息，以确保有恢复的方法！
+Attenzione: se il dispositivo è stato originariamente consegnato con il firmware AiPi-Lite (non la versione Xiaozhi), fare attenzione alle impostazioni delle partizioni di flash per evitare la cancellazione accidentale delle informazioni di fabbrica di AiPi-Lite (come EUI, ecc.). In caso contrario, anche ripristinando il firmware Xorigin il dispositivo potrebbe non riuscire a connettersi correttamente al server. Prima di eseguire il flash del firmware, annotate tutte le informazioni di dispositivo necessarie per poterle eventualmente ripristinare.
 
-您可以使用以下命令备份生产信息
+Potete usare il seguente comando per eseguire il backup delle informazioni di fabbrica:
 
 ```bash
 # firstly backup the factory information partition which contains the credentials for connecting the SenseCraft server

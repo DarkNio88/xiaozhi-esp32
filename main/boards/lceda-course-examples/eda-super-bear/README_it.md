@@ -1,0 +1,13 @@
+## EDA-Super-Bear (robot a forma di orso)
+
+### Documentazione
+- Documentazione progetto: https://wiki.lceda.cn/zh-hans/course-projects/smart-internet/eda-superbear/eda-superbear-introduce.html
+
+### Configurazione di compilazione
+Selezionare la tabella partizioni in base alla capacità flash del modulo (es. 8MB):
+
+```
+Partition Table  --->
+  Partition Table (Custom partition table CSV)  --->
+  (partitions/v2/8m.csv) Custom partition CSV file
+```

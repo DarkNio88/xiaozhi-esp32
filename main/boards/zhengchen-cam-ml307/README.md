@@ -1,14 +1,14 @@
-# 产品相关介绍网址
-# 征辰科技 AI camera + 4G
+# Siti web correlati al prodotto
+# Zhengchen Technology AI camera + 4G
 
-## 简介
-征辰科技 AI camera是小智AI的魔改项目，做了大量创新和优化。
+## Introduzione
+La AI camera di Zhengchen Technology è una versione modificata del progetto Xiaozhi AI, con numerose innovazioni e ottimizzazioni.
 
-## 合并版
-合并版代码在小智AI主项目中维护，跟随主项目的一起版本更新，便于用户自行扩展和第三方固件扩展。支持语音唤醒、语音打断、OTA等功能。
+## Versione integrata (merge)
+Il codice della versione integrata è mantenuto all'interno del progetto principale Xiaozhi AI e segue gli aggiornamenti di versione del progetto, facilitando l'estensione da parte degli utenti e l'integrazione di firmware di terze parti. Supporta wake word, interruzione vocale, OTA e altre funzionalità.
 
-## 魔改版
-魔改版由于底层改动太大，代码单独维护，定期合并主项目代码。
+## Versione modificata (mod)
+La versione modificata (mod) include cambiamenti di basso livello significativi; il codice è mantenuto separatamente e viene periodicamente unito al progetto principale.
 
 https://e.tb.cn/h.6Gl2LC7rsrswQZp?tk=qFuaV9hzh0k CZ356
 ```
@@ -17,19 +17,19 @@ https://e.tb.cn/h.hBc8Gcx9cUluJJO?tk=YW5C4LPixKg
 
 
 
-## 配置、编译命令
+## Comandi di configurazione e compilazione
 
-由于此项目需要配置较多的 sdkconfig 选项，推荐使用编译脚本编译。
+Poiché questo progetto richiede la configurazione di numerose opzioni di `sdkconfig`, si consiglia di utilizzare lo script di compilazione.
 
-**编译**
+**Compilazione**
 
 ```bash
 python ./scripts/release.py zhengchen-cam-ml307
 ```
 
-如需手动编译，请参考 `zhengchen-cam-ml307/config.json` 修改 menuconfig 对应选项。
+Per compilazione manuale, consultare `zhengchen-cam-ml307/config.json` per modificare le opzioni corrispondenti in `menuconfig`.
 
-**烧录**
+**Flash**
 
 ```bash
 idf.py flash
@@ -37,14 +37,14 @@ idf.py flash
 
 ```
 
-MCP Tool：
+Comandi MCP:
 self.get_device_status
 self.audio_speaker.set_volume
 self.screen.set_brightness
 self.screen.set_theme
 self.gif.set_gif_mode
 self.display.set_mode
-self.camera.take_photo       
+self.camera.take_photo
 self.AEC.set_mode
 self.AEC.get_mode
 self.res.esp_restart

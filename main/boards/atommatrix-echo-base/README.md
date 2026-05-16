@@ -1,24 +1,24 @@
-# 编译配置命令
+# Comandi di configurazione e compilazione
 
-**配置编译目标为 ESP32：**
+**Configura il target di compilazione su ESP32:**
 
 ```bash
 idf.py set-target esp32
 ```
 
-**打开 menuconfig：**
+**Apri menuconfig:**
 
 ```bash
 idf.py menuconfig
 ```
 
-**选择板子：**
+**Seleziona la scheda:**
 
 ```
 Xiaozhi Assistant -> Board Type -> AtomMatrix + Echo Base
 ```
 
-**编译：**
+**Compilazione:**
 
 ```bash
 idf.py build

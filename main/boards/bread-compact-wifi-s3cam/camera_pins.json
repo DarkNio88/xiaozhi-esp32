@@ -1,0 +1,19 @@
+{
+  "CAM_D0": {"gpio": 11, "label": "CAM D0: GPIO11"},
+  "CAM_D1": {"gpio": 9, "label": "CAM D1: GPIO9"},
+  "CAM_D2": {"gpio": 8, "label": "CAM D2: GPIO8"},
+  "CAM_D3": {"gpio": 10, "label": "CAM D3: GPIO10"},
+  "CAM_D4": {"gpio": 12, "label": "CAM D4: GPIO12"},
+  "CAM_D5": {"gpio": 18, "label": "CAM D5: GPIO18"},
+  "CAM_D6": {"gpio": 17, "label": "CAM D6: GPIO17"},
+  "CAM_D7": {"gpio": 16, "label": "CAM D7: GPIO16"},
+  "XCLK": {"gpio": 15, "label": "XCLK: GPIO15"},
+  "PCLK": {"gpio": 13, "label": "PCLK: GPIO13"},
+  "VSYNC": {"gpio": 6, "label": "VSYNC: GPIO6"},
+  "HREF": {"gpio": 7, "label": "HREF: GPIO7"},
+  "SIOC": {"gpio": 5, "label": "SIOC (SCL): GPIO5"},
+  "SIOD": {"gpio": 4, "label": "SIOD (SDA): GPIO4"},
+  "PWDN": {"gpio": null, "label": "PWDN: NC"},
+  "RESET": {"gpio": null, "label": "RESET: NC"},
+  "XCLK_FREQ_HZ": 20000000
+}

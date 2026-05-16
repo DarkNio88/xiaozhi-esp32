@@ -46,7 +46,7 @@ public:
     }
 };
 
-// 添加类型别名
+// Alias dei tipi
 using ReturnValue = std::variant<bool, int, std::string, cJSON*, ImageContent*>;
 
 enum PropertyType {
@@ -61,8 +61,8 @@ private:
     PropertyType type_;
     std::variant<bool, int, std::string> value_;
     bool has_default_value_;
-    std::optional<int> min_value_;  // 新增：整数最小值
-    std::optional<int> max_value_;  // 新增：整数最大值
+    std::optional<int> min_value_;  // Aggiunto: valore minimo (intero)
+    std::optional<int> max_value_;  // Aggiunto: valore massimo (intero)
 
 public:
     // Required field constructor
@@ -271,7 +271,7 @@ public:
 
     std::string Call(const PropertyList& properties) {
         ReturnValue return_value = callback_(properties);
-        // 返回结果
+        // Costruisce il risultato
         cJSON* result = cJSON_CreateObject();
         cJSON* content = cJSON_CreateArray();
 

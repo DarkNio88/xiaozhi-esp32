@@ -1,54 +1,54 @@
 # AtomS3R CAM/M12 + Echo Base
 
-## 简介
+## Introduzione
 
 <div align="center">
-    <a href="https://docs.m5stack.com/zh_CN/core/AtomS3R%20Cam"><b> AtomS3R CAM 产品主页 </b></a>
+    <a href="https://docs.m5stack.com/zh_CN/core/AtomS3R%20Cam"><b> Pagina prodotto AtomS3R CAM </b></a>
     |
-    <a href="https://docs.m5stack.com/zh_CN/core/AtomS3R-M12"><b> AtomS3R M12 产品主页 </b></a>
+    <a href="https://docs.m5stack.com/zh_CN/core/AtomS3R-M12"><b> Pagina prodotto AtomS3R M12 </b></a>
     |
-    <a href="https://docs.m5stack.com/zh_CN/atom/Atomic%20Echo%20Base"><b> Echo Base 产品主页 </b></a>
+    <a href="https://docs.m5stack.com/zh_CN/atom/Atomic%20Echo%20Base"><b> Pagina prodotto Echo Base </b></a>
 </div>
 
-AtomS3R CAM、AtomS3R M12 是 M5Stack 推出的基于 ESP32-S3-PICO-1-N8R8 的物联网可编程控制器，搭载了摄像头。Atomic Echo Base 是一款专为 M5 Atom 系列主机设计的语音识别底座，采用了 ES8311 单声道音频解码器、MEMS 麦克风和 NS4150B 功率放大器的集成方案。
+AtomS3R CAM e AtomS3R M12 sono controller IoT programmabili di M5Stack basati su ESP32-S3-PICO-1-N8R8 e dotati di fotocamera. Atomic Echo Base è una base per riconoscimento vocale progettata per le unità M5 Atom, che integra un decoder audio mono ES8311, microfoni MEMS e un amplificatore di potenza NS4150B.
 
-两款开发版均**不带屏幕、不带额外按键**，需要使用语音唤醒。必要时，需要使用 `idf.py monitor` 查看 log 以确定运行状态。
+Entrambe le schede **non includono schermo né pulsanti aggiuntivi** e richiedono il risveglio vocale. Se necessario, usa `idf.py monitor` per visualizzare i log e verificare lo stato di esecuzione.
 
-## 配置、编译命令
+## Configurazione e comandi di compilazione
 
-**配置编译目标为 ESP32S3**
+**Imposta il target di compilazione su ESP32S3**
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**打开 menuconfig 并配置**
+**Apri menuconfig e configura**
 
 ```bash
 idf.py menuconfig
 ```
 
-分别配置如下选项：
+Configura le seguenti opzioni:
 
-- `Xiaozhi Assistant` → `Board Type` → 选择 `AtomS3R CAM/M12 + Echo Base`
-- `Xiaozhi Assistant` → `IoT Protocol` → 选择 `MCP协议` 可开启摄像头识别功能
-- `Partition Table` → `Custom partition CSV file` → 删除原有内容，输入 `partitions/v2/8m.csv`
-- `Serial flasher config` → `Flash size` → 选择 `8 MB`
+- `Xiaozhi Assistant` → `Board Type` → seleziona `AtomS3R CAM/M12 + Echo Base`
+- `Xiaozhi Assistant` → `IoT Protocol` → seleziona `MCP protocol` per abilitare il riconoscimento della fotocamera
+- `Partition Table` → `Custom partition CSV file` → cancella il contenuto esistente e inserisci `partitions/v2/8m.csv`
+- `Serial flasher config` → `Flash size` → seleziona `8 MB`
 
-按 `S` 保存，按 `Q` 退出。
+Premi `S` per salvare e `Q` per uscire.
 
-**编译**
+**Compilazione**
 
 ```bash
 idf.py build
 ```
 
-**烧录**
+**Flash**
 
-将 AtomS3R CAM/M12 连接到电脑，按住侧面 RESET 按键，直到 RESET 按键下方绿灯闪烁。
+Collega AtomS3R CAM/M12 al computer e tieni premuto il tasto RESET laterale finché il LED verde sotto il tasto non lampeggia.
 
 ```bash
 idf.py flash
 ```
 
-烧录完毕后，按一下 RESET 按钮重启。
+Dopo il flashing, premi il tasto RESET per riavviare.

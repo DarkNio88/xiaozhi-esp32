@@ -5,8 +5,9 @@
 
 #define AUDIO_INPUT_SAMPLE_RATE  16000
 #define AUDIO_OUTPUT_SAMPLE_RATE 24000
+#define CONFIG_LCD_ST7789_240X240 true
 
-// 如果使用 Duplex I2S 模式，请注释下面一行
+// Se si utilizza la modalità I2S Duplex, commentare la riga seguente
 #define AUDIO_I2S_METHOD_SIMPLEX
 
 #ifdef AUDIO_I2S_METHOD_SIMPLEX
@@ -137,7 +138,9 @@
 #define DISPLAY_SPI_MODE 0
 #endif
 
-#ifdef CONFIG_LCD_ST7789_240X240
+#ifdef 
+
+
 #define LCD_TYPE_ST7789_SERIAL
 #define DISPLAY_WIDTH   240
 #define DISPLAY_HEIGHT  240

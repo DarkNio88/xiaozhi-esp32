@@ -1,48 +1,48 @@
-# 编译配置命令
+# Comandi di configurazione e compilazione
 
-**配置编译目标为 ESP32S3：**
+**Imposta il target di compilazione su ESP32S3:**
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**打开 menuconfig：**
+**Apri menuconfig:**
 
 ```bash
 idf.py menuconfig
 ```
 
-**选择板子：**
+**Seleziona la scheda:**
 
 ```
 Xiaozhi Assistant -> Board Type -> AtomS3 + Echo Base
 ```
 
-**关闭语音唤醒：**
+**Disabilita il risveglio vocale:**
 
 ```
-Xiaozhi Assistant -> [ ] 启用语音唤醒与音频处理 -> Unselect
+Xiaozhi Assistant -> [ ] Abilita risveglio vocale e elaborazione audio -> Deseleziona
 ```
 
-**修改 flash 大小：**
+**Imposta la dimensione del flash:**
 
 ```
 Serial flasher config -> Flash size -> 8 MB
 ```
 
-**修改分区表：**
+**Imposta la tabella partizioni:**
 
 ```
 Partition Table -> Custom partition CSV file -> partitions/v2/8m.csv
 ```
 
-**关闭片外 PSRAM：**
+**Disabilita PSRAM esterno:**
 
 ```
-Component config -> ESP PSRAM -> [ ] Support for external, SPI-connected RAM -> Unselect
+Component config -> ESP PSRAM -> [ ] Support for external, SPI-connected RAM -> Deseleziona
 ```
 
-**编译：**
+**Compilazione:**
 
 ```bash
 idf.py build

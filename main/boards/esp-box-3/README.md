@@ -1,132 +1,132 @@
 # ESP-BOX-3
 
-## 简介
+## Introduzione
 
 <div align="center">
     <a href="https://github.com/espressif/esp-box"><b> ESP-BOX GitHub </b></a>
 </div>
 
-ESP-BOX-3 是乐鑫官方开发的 AIoT 开发套件，搭载 ESP32-S3-WROOM-1 模组，配备 2.4 英寸 320x240 ILI9341 显示屏，双麦克风阵列，支持离线语音唤醒与设备端回声消除（AEC）功能。
+ESP-BOX-3 è un kit di sviluppo AIoT ufficiale di Espressif basato sul modulo ESP32-S3-WROOM-1, dotato di un display 2.4" 320x240 (ILI9341), array di due microfoni e supporto per wake word offline e AEC (echo cancellation) lato dispositivo.
 
-## 硬件特性
+## Caratteristiche hardware
 
-- **主控**: ESP32-S3-WROOM-1 (16MB Flash, 8MB PSRAM)
-- **显示屏**: 2.4 英寸 IPS LCD (320x240, ILI9341)
-- **音频**: ES8311 音频 Codec + ES7210 双麦 ADC
-- **音频功能**: 支持设备端 AEC (回声消除)
-- **按键**: Boot 按键 (单击/双击功能)
-- **其他**: USB-C 供电与通信
+- **MCU**: ESP32-S3-WROOM-1 (16MB Flash, 8MB PSRAM)
+- **Display**: 2.4" IPS LCD (320x240, ILI9341)
+- **Audio**: codec ES8311 + ADC ES7210 a doppio microfono
+- **Funzionalità audio**: supporto per AEC lato dispositivo
+- **Pulsanti**: tasto Boot (supporta singolo/doppio click)
+- **Altro**: alimentazione e comunicazione via USB-C
 
-## 配置、编译命令
+## Configurazione e comandi di compilazione
 
-**配置编译目标为 ESP32S3**
+**Imposta il target di compilazione su ESP32S3**
 
 ```bash
 idf.py set-target esp32s3
 ```
 
-**打开 menuconfig 并配置**
+**Apri menuconfig e configura**
 
 ```bash
 idf.py menuconfig
 ```
 
-分别配置如下选项：
+Configura le seguenti opzioni:
 
-### 基本配置
-- `Xiaozhi Assistant` → `Board Type` → 选择 `ESP BOX 3`
+### Configurazione base
+- `Xiaozhi Assistant` → `Board Type` → seleziona `ESP BOX 3`
 
-### UI风格选择
+### Selezione stile UI
 
-ESP-BOX-3 支持多种不同的 UI 显示风格，通过 menuconfig 配置选择：
+ESP-BOX-3 supporta diversi stili di UI; scegli lo stile tramite menuconfig:
 
-- `Xiaozhi Assistant` → `Select display style` → 选择显示风格
+- `Xiaozhi Assistant` → `Select display style` → scegli lo stile desiderato
 
-#### 可选风格
+#### Stili disponibili
 
-##### 表情动画风格 (Emote animation style) - 推荐
-- **配置选项**: `USE_EMOTE_MESSAGE_STYLE`
-- **特点**: 使用自定义的 `EmoteDisplay` 表情显示系统
-- **功能**: 支持丰富的表情动画、眼睛动画、状态图标显示
-- **适用**: 智能助手场景，提供更生动的人机交互体验
-- **类**: `emote::EmoteDisplay`
+##### Stile animazione emote (Emote animation style) - Raccomandato
+- **Opzione di configurazione**: `USE_EMOTE_MESSAGE_STYLE`
+- **Caratteristiche**: utilizza il sistema di visualizzazione delle espressioni personalizzato `EmoteDisplay`
+- **Funzionalità**: supporta ricche animazioni delle espressioni, animazioni degli occhi e icone di stato
+- **Adatto per**: scenari di assistente intelligente, offre un'interazione più vivace
+- **Classe**: `emote::EmoteDisplay`
 
-**⚠️ 重要**: 选择此风格需要额外配置自定义资源文件：
-1. `Xiaozhi Assistant` → `Flash Assets` → 选择 `Flash Custom Assets`
-2. `Xiaozhi Assistant` → `Custom Assets File` → 填入资源文件地址：
+**⚠️ Importante**: per usare questo stile è necessario configurare risorse personalizzate:
+1. `Xiaozhi Assistant` → `Flash Assets` → seleziona `Flash Custom Assets`
+2. `Xiaozhi Assistant` → `Custom Assets File` → inserisci l'URL delle risorse:
    ```
    https://dl.espressif.com/AE/wn9_nihaoxiaozhi_tts-font_puhui_common_20_4-esp-box-3.bin
    ```
 
-##### 默认消息风格 (Enable default message style)
-- **配置选项**: `USE_DEFAULT_MESSAGE_STYLE` (默认)
-- **特点**: 使用标准的消息显示界面
-- **功能**: 传统的文本和图标显示界面
-- **适用**: 标准的对话场景
-- **类**: `SpiLcdDisplay`
+##### Stile messaggio predefinito (Enable default message style)
+- **Opzione di configurazione**: `USE_DEFAULT_MESSAGE_STYLE` (predefinito)
+- **Caratteristiche**: interfaccia standard per la visualizzazione dei messaggi
+- **Funzionalità**: display tradizionale di testo e icone
+- **Adatto per**: scenari di conversazione standard
+- **Classe**: `SpiLcdDisplay`
 
-##### 微信消息风格 (Enable WeChat Message Style)
-- **配置选项**: `USE_WECHAT_MESSAGE_STYLE`
-- **特点**: 仿微信聊天界面风格
-- **功能**: 类似微信的消息气泡显示
-- **适用**: 喜欢微信风格的用户
-- **类**: `SpiLcdDisplay`
+##### Stile messaggi WeChat (Enable WeChat Message Style)
+- **Opzione di configurazione**: `USE_WECHAT_MESSAGE_STYLE`
+- **Caratteristiche**: interfaccia simile a WeChat
+- **Funzionalità**: visualizzazione dei messaggi in stile bolle
+- **Adatto per**: utenti che preferiscono lo stile WeChat
+- **Classe**: `SpiLcdDisplay`
 
-### 音频功能配置
+### Configurazione audio
 
-#### 设备端回声消除 (AEC)
-- `Xiaozhi Assistant` → `Enable Device-Side AEC` → 启用
+#### Echo Cancellation (AEC) lato dispositivo
+- `Xiaozhi Assistant` → `Enable Device-Side AEC` → abilita
 
-ESP-BOX-3 硬件支持设备端 AEC 功能，可有效消除扬声器播放声音对麦克风的干扰，提升语音识别准确率。
+L'hardware ESP-BOX-3 supporta AEC lato dispositivo, che riduce efficacemente il rumore dovuto alla riproduzione dagli altoparlanti migliorando la precisione del riconoscimento vocale.
 
-**运行时切换**: 双击 Boot 按键可在运行时开启/关闭 AEC 功能。
+**Cambio a runtime**: doppio click sul tasto Boot per abilitare/disabilitare AEC a runtime.
 
-> **说明**: 设备端 AEC 需要干净的扬声器输出参考路径和良好的麦克风与扬声器物理隔离才能正常工作。ESP-BOX-3 硬件已做优化设计。
+> **Nota**: l'AEC lato dispositivo richiede un percorso di riferimento pulito per l'uscita degli altoparlanti e una buona separazione fisica tra microfono e altoparlante per funzionare correttamente. L'hardware ESP-BOX-3 è progettato con ottimizzazioni in tal senso.
 
-### 唤醒词配置
+### Configurazione del wake word
 
-ESP-BOX-3 支持多种唤醒词实现方式：
+ESP-BOX-3 supporta diversi metodi per il wake word:
 
-- `Xiaozhi Assistant` → `Wake Word Implementation Type` → 选择唤醒词类型
+- `Xiaozhi Assistant` → `Wake Word Implementation Type` → seleziona il tipo di wake word
 
-推荐选择：
-- **Wakenet model with AFE** (`USE_AFE_WAKE_WORD`) - 支持 AEC 的唤醒词检测
+Raccomandato:
+- **Wakenet model with AFE** (`USE_AFE_WAKE_WORD`) - rilevamento del wake word compatibile con AEC
 
-按 `S` 保存，按 `Q` 退出。
+Premi `S` per salvare e `Q` per uscire.
 
-**编译**
+**Compilazione**
 
 ```bash
 idf.py build
 ```
 
-**烧录**
+**Flash**
 
-将 ESP-BOX-3 连接至电脑，并运行：
+Collega l'ESP-BOX-3 al computer ed esegui:
 
 ```bash
 idf.py flash
 ```
 
-## 按键说明
+## Descrizione dei pulsanti
 
-### Boot 按键功能
+### Funzioni del tasto Boot
 
-#### 单击
-- **配网状态**: 进入 WiFi 配置模式
-- **空闲状态**: 开始对话
-- **对话中**: 打断或停止当前对话
+#### Singolo click
+- **Durante la configurazione WiFi**: entra in modalità di configurazione WiFi
+- **In stato idle**: avvia la conversazione
+- **Durante una conversazione**: interrompe o ferma la conversazione corrente
 
-#### 双击 (需启用设备端 AEC)
-- **空闲状态**: 切换 AEC 开启/关闭
+#### Doppio click (richiede AEC lato dispositivo abilitato)
+- **In stato idle**: commuta l'AEC tra abilitato/disabilitato
 
-## 常见问题
+## Domande frequenti
 
-### 1. 为什么需要设备端 AEC？
-设备端 AEC 可以在本地实时消除扬声器播放声音对麦克风的干扰，在播放音乐或 TTS 回复时仍能准确识别语音指令。
+### 1. Perché è necessario l'AEC lato dispositivo?
+L'AEC lato dispositivo può rimuovere in tempo reale l'influenza della riproduzione audio sugli ingressi del microfono, permettendo di riconoscere correttamente comandi vocali anche durante la riproduzione di musica o TTS.
 
-### 2. 表情动画风格无法显示？
-请确保已经配置了正确的自定义资源文件地址，并且设备能够访问该 URL 下载资源。
+### 2. Perché lo stile animazione emote non viene visualizzato?
+Verifica di aver configurato correttamente l'URL delle risorse personalizzate e che il dispositivo possa accedere a tale URL per il download delle risorse.
 
-### 3. 如何恢复出厂设置？
-长按 Boot 按键 3 秒以上，设备会清除所有配置并重启。
+### 3. Come ripristinare le impostazioni di fabbrica?
+Tieni premuto il tasto Boot per più di 3 secondi; il dispositivo cancellerà tutte le impostazioni e si riavvierà.

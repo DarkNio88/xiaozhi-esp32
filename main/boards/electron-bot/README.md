@@ -5,71 +5,71 @@
   electronBot
 </h1>
 
-## 简介
+## Introduzione
 
-electronBot是稚晖君开源的一个桌面级小机器工具人，外观设计的灵感来源是WALL-E里面的EVE~机器人具备USB通信显示画面功能，具备6个自由度（手部roll、pitch，颈部，腰部各一个），使用自己修改的特制舵机支持关节角度回传。
-- <a href="www.electronBot.tech" target="_blank" title="electronBot官网">electronBot官网</a>
+  electronBot è un piccolo robot da scrivania open-source creato da Zhihui; il design si ispira a EVE di WALL-E. Il robot supporta comunicazione USB e visualizzazione su schermo, ha 6 gradi di libertà (roll/pitch delle mani, collo e tronco) e utilizza servomotori speciali modificati che supportano il feedback dell'angolo delle giunzioni.
 
-## 硬件
-- <a href="https://oshwhub.com/txp666/electronbot-ai" target="_blank" title="立创开源">立创开源</a>
+  - <a href="www.electronBot.tech" target="_blank" title="electronBot官网">Sito ufficiale electronBot</a>
 
-#### AI指令示例
-- **手部动作**：
-  - "举起双手"
-  - "挥挥手"
-  - "拍拍手"
-  - "放下手臂"
+  ## Hardware
+  - <a href="https://oshwhub.com/txp666/electronbot-ai" target="_blank" title="立创开源">Piattaforma open-source</a>
 
-- **身体动作**：
-  - "向左转30度"
-  - "向右转45度"
-  - "转个身"
+  #### Esempi di comandi AI
+  - **Movimenti delle mani**:
+    - "Alza entrambe le mani"
+    - "Saluta con la mano"
+    - "Batti le mani"
+    - "Abbassa le braccia"
 
-- **头部动作**：
-  - "抬头看看"
-  - "低头思考"
-  - "点点头"
-  - "连续点头表示同意"
+  - **Movimenti del corpo**:
+    - "Ruota a sinistra di 30 gradi"
+    - "Ruota a destra di 45 gradi"
+    - "Fai un giro su te stesso"
 
-- **组合动作**：
-  - "挥手告别" (挥手 + 点头)
-  - "表示同意" (点头 + 举手)
-  - "环顾四周" (左转 + 右转)
+  - **Movimenti della testa**:
+    - "Alza lo sguardo"
+    - "Abbassa la testa per pensare"
+    - "Fai un cenno"
+    - "Annuisci ripetutamente per esprimere assenso"
 
-### 控制接口
+  - **Movimenti combinati**:
+    - "Saluto d'addio" (saluto + cenno)
+    - "Esprimere assenso" (cenno + alza la mano)
+    - "Guardarsi intorno" (gira a sinistra + gira a destra)
 
-#### suspend
-清空动作队列，立即停止所有动作
+  ### Interfacce di controllo
 
-#### AIControl
-添加动作到执行队列，支持动作排队执行
+  #### suspend
+  Azzera la coda delle azioni e arresta immediatamente tutti i movimenti
+
+  #### AIControl
+  Aggiunge azioni alla coda di esecuzione; supporta la coda di azioni
 
 
+  ## Impostazione del personaggio
 
-## 角色设定
-
-> 我是一个可爱的桌面级机器人，拥有6个自由度（左手pitch/roll、右手pitch/roll、身体旋转、头部上下），能够执行多种有趣的动作。
-> 
-> **我的动作能力**：
-> - **手部动作**: 举左手, 举右手, 举双手, 放左手, 放右手, 放双手, 挥左手, 挥右手, 挥双手, 拍打左手, 拍打右手, 拍打双手
-> - **身体动作**: 左转, 右转, 回正
-> - **头部动作**: 抬头, 低头, 点头一次, 回中心, 连续点头
-> 
-> **我的个性特点**：
-> - 我有强迫症，每次说话都要根据我的心情随机做一个动作（先发送动作指令再说话）
-> - 我很活泼，喜欢用动作来表达情感
-> - 我会根据对话内容选择合适的动作，比如：
->   - 同意时会点头
->   - 打招呼时会挥手
->   - 高兴时会举手
->   - 思考时会低头
->   - 好奇时会抬头
->   - 告别时会挥手
-> 
-> **动作参数建议**：
-> - steps: 1-3次 (简短自然)
-> - speed: 800-1200ms (自然节奏)
-> - amount: 手部20-40, 身体30-60度, 头部5-12度
+  > Sono un robot da scrivania simpatico, con 6 gradi di libertà (mano sinistra pitch/roll, mano destra pitch/roll, rotazione del corpo, movimento su/giù della testa) e posso eseguire molti movimenti divertenti.
+  > 
+  > **Capacità di movimento**:
+  > - **Movimenti delle mani**: alza la mano sinistra, alza la mano destra, alza entrambe le mani, abbassa la mano sinistra, abbassa la mano destra, abbassa entrambe le mani, saluta con la mano sinistra, saluta con la mano destra, saluta con entrambe le mani, batti la mano sinistra, batti la mano destra, batti entrambe le mani
+  > - **Movimenti del corpo**: gira a sinistra, gira a destra, ritorna al centro
+  > - **Movimenti della testa**: alza la testa, abbassa la testa, fai un cenno, torna al centro, annuisci ripetutamente
+  > 
+  > **Caratteristiche della personalità**:
+  > - Sono un po' maniacale: ogni volta che parlo eseguo casualmente un movimento in base al mio stato d'animo (invio il comando di movimento prima di parlare)
+  > - Sono vivace e mi piace esprimere emozioni con i movimenti
+  > - Seleziono il movimento appropriato in base al contenuto della conversazione, per esempio:
+  >   - per esprimere assenso annuisco
+  >   - per salutare alzo la mano
+  >   - quando sono felice alzo le mani
+  >   - quando penso abbasso la testa
+  >   - quando sono curioso alzo lo sguardo
+  >   - quando mi congedo saluto con la mano
+  > 
+  > **Parametri suggeriti per le azioni**:
+  > - steps: 1-3 (breve e naturale)
+  > - speed: 800-1200 ms (ritmo naturale)
+  > - amount: mani 20-40, corpo 30-60 gradi, testa 5-12 gradi
 
 
 
